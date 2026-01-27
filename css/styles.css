@@ -1,0 +1,262 @@
+/* =====================
+   RESET BÁSICO
+===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =====================
+   VARIABLES DE COLOR
+===================== */
+:root {
+    --bg-color: #0d1117;
+    --card-color: #161b22;
+    --primary-color: #00ff9c;
+    --text-color: #e6edf3;
+    --muted-text: #8b949e;
+    --border-color: #30363d;
+}
+
+/* =====================
+   ESTILOS GENERALES
+===================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+p, li {
+    color: var(--muted-text);
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+/* =====================
+   HEADER
+===================== */
+header {
+    background-color: var(--card-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* =====================
+   NAVEGACIÓN
+===================== */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* =====================
+   SECCIONES
+===================== */
+section {
+    background-color: var(--card-color);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+section h2 {
+    margin-bottom: 15px;
+}
+
+/* =====================
+   LISTAS
+===================== */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* =====================
+   FORMULARIO
+===================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+input, textarea {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* =====================
+   BOTÓN
+===================== */
+button {
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #00cc7a;
+}
+
+/* =====================
+   TEXTO RESPUESTA
+===================== */
+.respuesta {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--muted-text);
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+    background-color: var(--card-color);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85rem;
+    color: var(--muted-text);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+/* =====================
+   LOADER
+===================== */
+#loader {
+    position: fixed;
+    inset: 0;
+    background-color: #0d1117;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease forwards;
+    animation-delay: 4s;
+}
+
+.lock {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: unlock 4s ease forwards;
+}
+
+.code {
+    color: #00ff9c;
+    font-family: "Courier New", monospace;
+    font-size: 0.9rem;
+    text-align: left;
+    white-space: pre-wrap;
+    width: 80%;
+    max-width: 600px;
+    animation: typing 3s steps(40, end);
+    overflow: hidden;
+}
+
+/* =====================
+   ANIMACIONES
+===================== */
+@keyframes unlock {
+    0% {
+        content: "🔒";
+        transform: scale(1);
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        content: "🔓";
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes typing {
+    from {
+        max-height: 0;
+    }
+    to {
+        max-height: 300px;
+    }
+}
