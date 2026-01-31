@@ -12,37 +12,6 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<script>
-(function () {
-    emailjs.init("T2hpzYAMScSBeQ-YF");
-})();
-
-document
-    .getElementById("contact-form")
-    ?.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const serviceID = "service_lsf630l";
-        const templateAdmin = "template_dp5rn5c";
-        const templateUser = "template_epw3p4i";
-
-        emailjs.sendForm(serviceID, templateAdmin, this)
-            .then(() => {
-                return emailjs.sendForm(serviceID, templateUser, this);
-            })
-            .then(() => {
-                alert("Mensaje enviado correctamente. Revisa tu correo.");
-                this.reset();
-            })
-            .catch((error) => {
-                alert("Ocurrió un error al enviar el mensaje.");
-                console.error(error);
-            });
-    });
-</script>
-
 <body>
 
     <!-- ================= HEADER ================= -->
@@ -189,6 +158,36 @@ Mi enfoque académico se centra en comprender el funcionamiento interno de los s
     </footer>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+    (function () {
+        emailjs.init("T2hpzYAMScSBeQ-YF");
+    })();
+    
+    document
+        .getElementById("contact-form")
+        ?.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            const serviceID = "service_lsf630l";
+            const templateAdmin = "template_dp5rn5c";
+            const templateUser = "template_epw3p4i";
+    
+            emailjs.sendForm(serviceID, templateAdmin, this)
+                .then(() => {
+                    return emailjs.sendForm(serviceID, templateUser, this);
+                })
+                .then(() => {
+                    alert("Mensaje enviado correctamente. Revisa tu correo.");
+                    this.reset();
+                })
+                .catch((error) => {
+                    alert("Ocurrió un error al enviar el mensaje.");
+                    console.error(error);
+                });
+        });
+</script>
 <!-- ===== PANTALLA DE CARGA ===== -->
 <div id="loader">
     <div class="lock">
@@ -203,4 +202,5 @@ Access granted.
     </pre>
 </div>
 </html>
+
 
