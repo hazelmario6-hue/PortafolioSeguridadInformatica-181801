@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Logbook | Portafolio</title>
+    <title>Portafolio de Evidencias</title>
 
     <!-- SEO básico -->
     <meta name="description" content="Portafolio digital de Seguridad Informática">
@@ -12,27 +12,70 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function () {
+    emailjs.init("T2hpzYAMScSBeQ-YF");
+})();
+
+document
+    .getElementById("contact-form")
+    ?.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const serviceID = "service_lsf630l";
+        const templateAdmin = "template_dp5rn5c";
+        const templateUser = "template_epw3p4i";
+
+        emailjs.sendForm(serviceID, templateAdmin, this)
+            .then(() => {
+                return emailjs.sendForm(serviceID, templateUser, this);
+            })
+            .then(() => {
+                alert("Mensaje enviado correctamente. Revisa tu correo.");
+                this.reset();
+            })
+            .catch((error) => {
+                alert("Ocurrió un error al enviar el mensaje.");
+                console.error(error);
+            });
+    });
+</script>
+
 <body>
 
     <!-- ================= HEADER ================= -->
-    <header>
-        <div class="header-container">
-            <h1>Security Logbook</h1>
-            <p>
-                <strong>Nombre:</strong> Hazel Mario Avalos Rangel <br>
-                <strong>Asignatura:</strong> CNO V – Seguridad Informática <br>
-                <strong>Institución:</strong> UPSLP <br>
-                <strong>Periodo:</strong> 2026-1
-            </p>
 
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Prácticas</a></li>
-                    <li><a href="#">Análisis</a></li>
-                    <li><a href="#">Evidencias</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="#" title="Inicio">
+                    <img src="Image/icons/inicio.png" alt="Inicio">
+                </a>
+
+                <a href="#" title="Prácticas">
+                    <img src="Image/icons/practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="#" title="Evidencias">
+                    <img src="Image/icons/evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="#" title="Contacto">
+                    <img src="Image/icons/contacto.png" alt="Contacto">
+                </a>
             </nav>
         </div>
     </header>
@@ -41,28 +84,65 @@
     <main>
 
         <!-- Presentación del portafolio -->
-        <section id="presentacion">
-            <h2>Presentación del Portafolio</h2>
-            <p>
-                Este portafolio digital funciona como una bitácora técnica de
-                evidencias académicas del curso <strong>Seguridad Informática</strong>,
-                donde se documentan prácticas, análisis de vulnerabilidades y
-                actividades relacionadas con la ciberseguridad.
-            </p>
+        <section class="section-flex">
+
+            <!-- Texto -->
+            <div class="section-text">
+                <h2>Presentación del Portafolio</h2>
+                <p>
+                Este portafolio digital funciona como un repositorio técnico
+                 de evidencias académicas desarrolladas durante el curso de 
+                 Seguridad Informática, cuyo propósito principal es documentar
+                  de manera clara, estructurada y profesional los conocimientos
+                 adquiridos a lo largo del semestre. El contenido está orientado
+                  al estudio y aplicación de conceptos fundamentales de la 
+                  seguridad informática, incluyendo el análisis de 
+                  vulnerabilidades, la identificación de riesgos y la ejecución 
+                  de pruebas de penetración. A través de estas actividades se 
+                  busca comprender el funcionamiento de los sistemas de 
+                  información desde una perspectiva de seguridad, así como las 
+                  técnicas empleadas para prevenir, detectar y mitigar posibles 
+                  amenazas.
+                </p>
+            </div>
+
+            <!-- Carrusel -->
+            <div class="carousel">
+                <div class="carousel-track">
+                <img src="Image/C1-1.jpg" alt="Seguridad 1">
+                <img src="Image/C1-2.jpg" alt="Seguridad 2">
+                <img src="Image/C1-3.png" alt="Seguridad 3">
+                </div>
+            </div>
+
         </section>
 
         <!-- Perfil del estudiante -->
-        <section id="perfil">
-            <h2>Perfil del Estudiante</h2>
-            <p>
-                Estudiante de Ingeniería en Tecnologías de la Información con
-                interés en seguridad informática, ciberseguridad, análisis de
-                vulnerabilidades y protección de la información.
-            </p>
+        <section class="section-flex">
+
+            <!-- Texto -->
+            <div class="section-text">
+                <h2>Perfil del Estudiante</h2>
+                <p>
+                    Soy HeizellNull, estudiante de Ingeniería en Tecnologías de la Información, con un marcado interés en el área de la programación, especialmente en el desarrollo backend, así como en la seguridad informática, la ciberseguridad, el análisis de vulnerabilidades y la protección de la información.
+
+Mi enfoque académico se centra en comprender el funcionamiento interno de los sistemas, identificar posibles riesgos y aplicar soluciones técnicas que fortalezcan la seguridad de la información, combinando conocimientos teóricos con la práctica y la documentación profesional.
+                </p>
+            </div>
+
+            <!-- Carrusel -->
+            <div class="carousel">
+                <div class="carousel-track">
+                <img src="Image/C2-1.png" alt="Seguridad 1">
+                <img src="Image/C2-2.jpg" alt="Seguridad 2">
+                <img src="Image/C2-3.jpg" alt="Seguridad 3">
+                </div>
+            </div>
+
         </section>
 
         <!-- Información técnica -->
-        <section id="info-tecnica">
+        <section id="section-tech">
             <h2>Información Técnica</h2>
             <ul>
                 <li><strong>Lenguajes:</strong> HTML5, CSS3, JavaScript</li>
@@ -75,10 +155,11 @@
         <!-- Contacto -->
         <section id="contacto">
             <h2>Contacto</h2>
-            <form action="https://formspree.io/f/mkorejek" method="POST">
+            <form id="contact-form">
 
-                <!-- Asunto del correo -->
-                <input type="hidden" name="_subject" value="Nuevo mensaje - Portafolio Seguridad Informática">
+                <!-- Nombre del visitante -->
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
 
                 <!-- Email del visitante -->
                 <label for="email">Correo electrónico:</label>
@@ -91,7 +172,7 @@
                 <button type="submit">Enviar</button>
             </form>
 
-            <p class="respuesta">
+            <p class="respuesta" id="respuesta">
                 Al enviar el formulario recibirás una respuesta automática de confirmación.
             </p>
         </section>
