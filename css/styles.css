@@ -531,6 +531,15 @@ footer {
     .galeria img {
         max-width: 100%; /* Las imágenes toman todo el ancho disponible */
     }
+
+   .galeriaT {
+        justify-content: center;
+    }
+
+    .galeriaT img {
+        max-width: 100%; /* Las imágenes toman todo el ancho disponible */
+    }
+   
     .header-container {
         flex-direction: column;
         gap: 15px;
