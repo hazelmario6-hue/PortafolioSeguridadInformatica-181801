@@ -624,6 +624,21 @@ footer {
     width: 100%;
 }
 
+.galeriaT {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.galeriaT img {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+}
+
 /* Hace que el iframe de YouTube se adapte al 100% manteniendo el formato 16:9 */
 .video {
     height: 0;
