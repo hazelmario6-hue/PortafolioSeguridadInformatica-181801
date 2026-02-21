@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 3 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/inicio.png" alt="Inicio">
+                </a>
+
+                <a href="#" title="Prácticas">
+                    <img src="Image/icons/practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contacto" title="Contacto">
+                    <img src="Image/icons/contacto.png" alt="Contacto">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog">
+        <h2>Actividad 3 -  Interpretación y traducción de políticas de filtrado en iptables</h2>
+        <p> Interpretación y traducción de políticas de filtrado en iptables</p>
+    </section>
+
+<main class="actividad-container">
+
+    <!-- ================= INTRODUCCIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Introducción</h2>
+        <p>
+            En la presente actividad se realizó la interpretación y traducción de políticas de filtrado utilizando iptables en sistemas Linux. El objetivo fue comprender el flujo que sigue un paquete dentro del firewall, identificando cómo interactúan las tablas, cadenas y reglas para controlar el tráfico de red.
+        </p>
+        <p>
+            A través del análisis de comandos reales, se estudió la estructura sintáctica de iptables y su aplicación práctica para permitir, bloquear o registrar conexiones según puertos, direcciones IP, estados de conexión e interfaces de red.
+        </p>
+    </section>
+
+    <!-- ================= DESARROLLO ================= -->
+    <section class="actividad-seccion">
+        <h2>1. Completa los espacios conforme se explica el flujo del paquete</h2>
+        <p>Cuando un paquete llega al sistema, primero pasa por una <strong>tabla</strong>, después por una  <strong>cadena</strong> y finalmente se ejecuta una <strong>regla.</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>2. Relaciona cada tabla con su propósito principal</h2><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tabla</th>
+                    <th>Propósito principal</th>
+                    <th>Ejemplo de uso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-tabla">Filter</td>
+                    <td>Filtrar tráfico de paquetes</td>
+                    <td>Bloquear el tráfico de paquetes</td>
+                </tr>
+                <tr>
+                    <td class="col-tabla">Nat</td>
+                    <td>Traducción de direcciones</td>
+                    <td>Hacer NAT</td>
+                </tr>
+                <tr>
+                    <td class="col-tabla">Mangle</td>
+                    <td>Modificación avanzada de paquetes</td>
+                    <td>Marcar/Cambiar las cabeceras</td>
+                </tr>
+                <tr>
+                    <td class="col-tabla">Raw</td>
+                    <td>Seguimiento de conexiones</td>
+                    <td>Paquetes no inspeccionados</td>
+                </tr>
+                <tr>
+                    <td class="col-tabla">Security</td>
+                    <td>Aplicación etiquetas de seguridad</td>
+                    <td>Controlar seguridad adicional</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>3. Anatomía de un comando iptables</h2>
+        <p>iptables -A <strong>INPUT</strong> -p tcp -m <strong>multiport</strong> --dports 80,443 -j <strong>ACCEPT</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>4. Este comando permite:</h2>
+        <p>Permite el tráfico TCP entrante a los puertos 80 y 443</p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>5. Variables y opciones comunes</h2>
+        <p><strong>a) Limitar intentos por minuto</strong><br> -- limit 1/minute</p><br>
+        <p><strong>b) Filtrar por IP de origen</strong><br> -s 192.168.1.0/24 </p><br>
+        <p><strong>c) Ver solo números, sin DNS (ni resolución de puertos)</strong><br> -L -n</p><br>
+        <p><strong>d) Ver reglas con contadores (paquetes y bytes)</strong><br> -L -v</p><br>
+    </section>
+    <!-- ================= MULTIMEDIA ================= -->
+    <section class="actividad-seccion">
+        <h2>Evidencia y material multimedia</h2>
+
+        <h3 style="color: white">Diagrama Iptables</h3>
+
+        <div class="galeria">
+            <!-- 🔽 coloca aquí tus capturas -->
+            <img src="Image/act3.1.png">
+        </div>
+
+        <h3 style="color: white">Video demostrativo</h3>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cnceIaqI3FM?si=yxR-MgI_6hRYTK7w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>6. ¿Qué hace esta regla?</h2>
+        <p><strong>iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 \
+        -m state --state NEW,ESTABLISHED -j ACCEPT</strong></p>
+
+        <p>Permite el tráfico TCP entrante a traves de la interfaz fisica eth0
+        en los puertos 20, 80 y 443 mientras sea una nueva conexion o una ya
+        establecida.
+        </p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>7. Permitir tráfico HTTP entrante</h2>
+        <p>iptables -A INPUT -p tcp --dport 80 -j ACCEPT</p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>8. Permitir todo el tráfico saliente</h2>
+        <p>iptables -A OUTPUT -j ACCEPT</p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>9. Permitir SSH solo desde la IP 192.168.1.50</h2>
+        <p>iptables -A INPUT -p tcp --dport 22 -s 192.168.1.50 -j ACCEPT</p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>10. Permitir tráfico TCP entrante a puertos 80 y 443 solo si es conexión establecida o relacionada</h2>
+        <p>iptables -A INPUT -p tcp -m multiport --dports 80,443 -m state --state ESTABLISHED,RELATED -j ACCEPT</p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>11. Permitir tráfico TCP entrante por eth0 a 22, 80 y 443, registrar intentos y permitir solo NEW y ESTABLISHED</h2>
+        <p>iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW -j LOG --log-prefix "Intento " <br>
+        iptables -A INPUT -i eth0 -p tcp -m multiport --dports 22,80,443 -m state --state NEW,ESTABLISHED -j ACCEPT</p>
+    </section>
+
+    <!-- ================= REFLEXIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Reflexión técnica</h2>
+        <p>
+            Esta actividad permitió comprender que el filtrado de paquetes no es solo la ejecución de comandos, sino la construcción lógica de políticas de seguridad coherentes. Entender el flujo del paquete y la jerarquía tabla-cadena-regla es fundamental para evitar configuraciones incorrectas que puedan exponer un sistema.
+        </p>
+        <p>
+            Además, se reforzó la importancia del control granular del tráfico, especialmente al trabajar con estados de conexión y restricciones por interfaz o dirección IP. En un entorno real, una mala interpretación de una regla puede generar vulnerabilidades críticas o interrupciones en el servicio.
+        </p>
+        <p>
+            El dominio de iptables representa una base sólida para la administración segura de servidores y redes, fortaleciendo la capacidad de diseñar mecanismos de defensa efectivos desde el nivel más bajo del sistema.
+        </p>
+    </section>
+
+    <!-- ================= REFERENCIAS ================= -->
+    <section class="actividad-seccion">
+        <h2>10. Referencias técnicas</h2>
+        <ul>
+            <!-- 🔽 pega tus referencias -->
+            <li>Shirey, R. (2007). Internet Security Glossary, Version 2 (RFC 4949). Internet 
+                Engineering Task Force. https://datatracker.ietf.org/doc/html/rfc4949    
+            </li>
+            <li>Unión Internacional de Telecomunicaciones. (1991). Arquitectura de seguridad para 
+            la 
+            interconexión de sistemas abiertos para aplicaciones de las CCITT 
+            (Recomendación ITU-T X.800). https://www.itu.int/rec/T-REC-X.800-199103-I/es  </li>
+        </ul>
+    </section>
+
+    <!-- ================= PDF ================= -->
+    <section class="actividad-seccion descarga">
+        <h2>Documento en PDF</h2>
+        <a href="pdf/Act3.pdf" class="btn-pdf" download>
+            📄 Exportar a PDF
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+</footer>
+
+</body>
+</html>
