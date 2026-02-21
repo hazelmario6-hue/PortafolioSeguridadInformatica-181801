@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 5 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="#" title="Prácticas">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contact" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog">
+        <h2>Actividad 5 -  Cartografiando el pentesting: análisis comparativo de 
+        metodologías de seguridad informática</h2>
+        <p>Cartografiando el pentesting</p>
+    </section>
+
+<main class="actividad-container">
+
+    <!-- ================= INTRODUCCIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Introducción</h2>
+        <p>
+            En esta actividad se realizó un análisis comparativo de distintas metodologías y marcos de referencia utilizados en pruebas de penetración y evaluación de seguridad informática. Se estudiaron enfoques como MITRE ATT&CK, OWASP WSTG, NIST SP 800-115, OSSTMM, PTES e ISSAF, identificando sus objetivos, fases de implementación, orientación y ámbito de aplicación.
+        </p>
+        <p>
+            El propósito fue comprender cómo cada metodología aborda el proceso de pentesting desde diferentes perspectivas: técnica, operativa, normativa o estratégica, permitiendo así seleccionar el enfoque más adecuado según el contexto organizacional.
+        </p>
+    </section>
+
+    <!-- ================= DESARROLLO ================= -->
+    <section class="actividad-seccion">
+        <h2>Metodologías y marcos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Prueba de pentesting</th>
+                    <th>Descripción breve de la metodología</th>
+                    <th>Fases de implementación</th>
+                    <th>Objetivo principal</th>
+                    <th>Escenarios en los que se utiliza</th>
+                    <th>Orientación</th>
+                    <th>Autores u organismos responsables</th>
+                    <th>URL del material oficial</th>
+                    <th>Existencia de certificaciones asociadas</th>
+                    <th>Versiones o actualizaciones vigentes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-elemento">MTRE ATT&CK</td>
+                    <td>Conjunto de matrices de tácticas, técnicas y sub-técnicas de adversarios.</td>
+                    <td>Las fases dependen de la matriz, las cuales son Enterprise, ICS y Mobile. Cada una cuenta con diferentes fases de implementación.</td>
+                    <td>Aprender sobre TTP (Tácticas, Técnicas y Procedimientos) de adversarios.</td>
+                    <td>Preparación de ataques, explotación y post-explotación.</td>
+                    <td>Defensiva y ofensiva.</td>
+                    <td>MITRE</td>
+                    <td><a href="https://attack.mitre.org/" target="_blank" style="color: var(--primary-color);">https://attack.mitre.org/</a></td>
+                    <td>No existen certificaciones oficiales.</td>
+                    <td>Actualización constante de cada matriz y sus respectivas técnicas.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-elemento">OWASP WSTG</td>
+                    <td>Es una guía detallada y completa centrada en la seguridad de aplicaciones web.</td>
+                    <td>
+                        <ul>
+                            <li>1. Antes de que comience el desarrollo.</li>
+                            <li>2. Durante la definición y diseño.</li>
+                            <li>3. Durante el desarrollo.</li>
+                            <li>4. Durante el despliegue.</li>
+                            <li>5. Durante el mantenimiento y las operaciones.</li>
+                        </ul>
+                    </td>
+                    <td>Detectar vulnerabilidades en aplicaciones web.</td>
+                    <td>Pentesting web, auditorías de software.</td>
+                    <td>Seguridad de aplicaciones web.</td>
+                    <td>OWASP</td>
+                    <td><a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" style="color: var(--primary-color);">https://owasp.org/www-project-web-security-testing-guide/</a></td>
+                    <td>OWASP Testing Guide, OWASP Top 10.</td>
+                    <td>La versión más reciente es la 4.2 lanzada el 13 de diciembre del 2020.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-elemento">NIST SP 800-115</td>
+                    <td>Guía de la industria sobre planificación y realización de pruebas de seguridad.</td>
+                    <td>
+                        <ul>
+                            <li>1. Planeación.</li>
+                            <li>2. Ejecución.</li>
+                            <li>3. Post-ejecución.</li>
+                        </ul>
+                    </td>
+                    <td>Proporcionar pautas sobre seguridad de la información.</td>
+                    <td>Estándar de la industria para orientación de pentesting.</td>
+                    <td>Metodología para evaluaciones de seguridad de la información.</td>
+                    <td>National Institute of Standards and Technology (NIST).</td>
+                    <td><a href="https://csrc.nist.gov/publications/detail/sp/800-115/final" target="_blank" style="color: var(--primary-color);">https://csrc.nist.gov/publications/detail/sp/800-115/final</a></td>
+                    <td>No tiene certificación, se usa como guía de referencia en auditorías y estándares de seguridad.</td>
+                    <td>La versión más reciente es la SP 800-115 lanzada en septiembre del 2008.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-elemento">OSSTMM</td>
+                    <td>Documento que establece pruebas de seguridad repetibles y uniformes.</td>
+                    <td>
+                        <ul>
+                            <li>1. Definir alcance y reglas del test.</li>
+                            <li>2. Ejecutar pruebas por canales (humano, físico, red).</li>
+                            <li>3. Medición RAV.</li>
+                            <li>4. Reportar mediante STAR (Security Test Audit Report).</li>
+                        </ul>
+                    </td>
+                    <td>Establecer métricas de seguridad operativa y análisis de confianza.</td>
+                    <td>Pentesting empresarial, Evaluación de seguridad física y humana, Telecomunicaciones y redes.</td>
+                    <td>Operativa y técnica.</td>
+                    <td>Pete Herzog, ISECOM</td>
+                    <td><a href="https://www.isecom.org" target="_blank" style="color: var(--primary-color);">https://www.isecom.org</a></td>
+                    <td>
+                        <ul>
+                            <li>OPST</li>
+                            <li>OPSA</li>
+                            <li>OPSE</li>
+                            <li>OWSE</li>
+                        </ul>
+                    </td>
+                    <td>OSSTMM versión 3.02 lanzada el 14 de diciembre del 2010.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-elemento">PTES</td>
+                    <td>Estándar que provee información sobre tipos de ataques, métodos y herramientas.</td>
+                    <td>
+                        <ul>
+                            <li>1. Interacciones previas al compromiso.</li>
+                            <li>2. Recopilación de inteligencia.</li>
+                            <li>3. Modelado de amenazas.</li>
+                            <li>4. Análisis de vulnerabilidades.</li>
+                            <li>5. Explotación.</li>
+                            <li>6. Post-explotación.</li>
+                            <li>7. Informes.</li>
+                        </ul>
+                    </td>
+                    <td>Estandarizar la ejecución de pruebas de penetración.</td>
+                    <td>Pentesting empresarial.</td>
+                    <td>Ofensiva.</td>
+                    <td>PTES</td>
+                    <td><a href="http://www.pentest-standard.org" target="_blank" style="color: var(--primary-color);">http://www.pentest-standard.org</a></td>
+                    <td>OSCP, eJPT relacionadas.</td>
+                    <td>Estándar estable sin versión formal.</td>
+                </tr>
+
+                <tr>
+                    <td class="col-elemento">ISSAF</td>
+                    <td>Metodología para evaluar seguridad de sistemas, redes y controles.</td>
+                    <td>
+                        <ul>
+                            <li>1. Recopilación de información.</li>
+                            <li>2. Asignación de red.</li>
+                            <li>3. Identificación de vulnerabilidades.</li>
+                            <li>4. Penetración.</li>
+                            <li>5. Obtener acceso y escalamiento de privilegios.</li>
+                            <li>6. Más enumeración.</li>
+                            <li>7. Comprometer a usuarios / sitios remotos.</li>
+                            <li>8. Mantener el acceso.</li>
+                            <li>9. Cubriendo las pistas.</li>
+                        </ul>
+                    </td>
+                    <td>Evaluación exhaustiva de la seguridad de sistemas de información.</td>
+                    <td>Auditorías corporativas y pentesting.</td>
+                    <td>Auditoría y ofensiva.</td>
+                    <td>Open Information Security Group (OISSG)</td>
+                    <td><a href="https://pymesec.org/issaf/" target="_blank" style="color: var(--primary-color);">https://pymesec.org/issaf/</a></td>
+                    <td>No existen certificaciones oficiales.</td>
+                    <td>Versión vigente lanzada en el 2004.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ================= MULTIMEDIA ================= -->
+    <section class="actividad-seccion">
+        <h2>Evidencia y material multimedia</h2>
+
+        <h3 style="color: white">Videos demostrativos</h3>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/WRwhfXMMVaQ?si=UyBOZ8bwS8JZQxIp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/RZL7YfDuq8E?si=gqFaL8PeOjvxDGQV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- ================= REFLEXIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Reflexión técnica</h2>
+        <p>
+            El análisis comparativo permitió identificar que no existe una metodología única que cubra todos los escenarios de seguridad. Cada marco responde a necesidades específicas: algunos priorizan la estandarización formal, otros la ofensiva técnica, y otros la documentación estructurada.
+        </p>
+        <p>
+            Se evidenció que marcos como MITRE ATT&CK aportan una visión táctica del comportamiento adversario, mientras que estándares como NIST SP 800-115 ofrecen una orientación metodológica más formal. Por su parte, PTES y OSSTMM se enfocan en la ejecución operativa del pentesting.
+        </p>
+        <p>
+            En entornos reales, la correcta combinación de metodologías fortalece la planificación, ejecución y reporte de pruebas de seguridad, permitiendo evaluaciones más completas y alineadas con los riesgos organizacionales.
+        </p>
+    </section>
+
+    <!-- ================= REFERENCIAS ================= -->
+    <section class="actividad-seccion">
+        <h2>Referencias técnicas</h2>
+        <ul>
+            <li>Cisco Networking Academy. (2026). 1.2 Exploración de las metodologías de pruebas de penetración. Cisco Networking Academy | 
+            Seguridad Informática-Hacker ético.  https://www.netacad.com/launch?id=3b07bfc3-9b21-4dbd
+            909ba235416df136&tab=curriculum&view=3d7507ef-98e1-51ac-b1026bdb7618f7a4  </li>
+            <li>Herzog, P. (2010). OSSTMM 3. ISECOM. https://www.isecom.org/OSSTMM.3.pdf </li>
+            <li>MITRE Corporation. (2026). ATT&CK. MITRE ATT&CK. https://attack.mitre.org  </li>
+            <li>National Institute of Standarts and Security (NIST). (septiembre de 2008). NIST SP 800-115 Technical Guide to Information Security 
+            Testing and Assessment. CSRC NIST.  https://csrc.nist.gov/pubs/sp/800/115/final  </li>
+            <li>OISSG. (30 de abril de 2006). Information Sistems Security Assessment Framework Open Information Security Group (OISSG). 
+            PYMESEC. https://pymesec.org/issaf/  </li>
+            <li>OWASP. (2026). OWASP Web Security Testing Guide. OWASP. https://owasp.org/www-project-web-security-testingguide/  </li>
+            <li>PTES. (16 de agosto de 2014). Main Page. PentTest Standard. http://www.penteststandard.org/index.php/Main_Page </li>
+        </ul>
+    </section>
+
+    <!-- ================= PDF ================= -->
+    <section class="actividad-seccion descarga">
+        <h2>Documento en PDF</h2>
+        <a href="pdf/Act5.pdf" class="btn-pdf" download>
+            📄 Exportar a PDF
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+</footer>
+
+</body>
+</html>
