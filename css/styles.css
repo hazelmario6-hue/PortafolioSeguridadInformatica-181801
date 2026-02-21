@@ -23,8 +23,19 @@
    ESTILOS GENERALES
 ===================== */
 body {
-    background: url("../Image/fondo.jpg") no-repeat center center fixed;
+    position: relative;
+}
+
+body::before {
+    background: url("../Image/fondo.jpg") no-repeat center center;
     background-size: cover;
+    content: "";
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
 }
 
 h1, h2 {
@@ -507,6 +518,12 @@ footer {
         padding: 15px; /* Reducimos el espacio interno de las tarjetas */
     }
 
+    body {
+        /* Desactiva el fixed en móviles para evitar el zoom masivo */
+        background-attachment: scroll; 
+        background-position: top center;
+    }
+    
     .galeria {
         justify-content: center;
     }
@@ -695,7 +712,7 @@ tbody tr:hover td {
     text-align: center;
     text-transform: uppercase;
 }
-
+   
 /* Listas dentro de la tabla */
 td ul {
     margin: 0;
