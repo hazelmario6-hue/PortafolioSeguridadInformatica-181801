@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="#" title="Prácticas">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contact" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+            </nav>
+        </div>
+    </header>
+    <section class="blog">
+        <h2>Actividad 4 -  Mecanismos de defensa en red</h2>
+        <p>Mecanismos de defensa en red</p>
+    </section>
+
+<main class="actividad-container">
+
+    <!-- ================= INTRODUCCIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Introducción</h2>
+        <p>
+            En esta actividad se diseñaron políticas de filtrado para un firewall perimetral con el objetivo de proteger una red interna 192.1.2.0/24 expuesta a Internet. A partir de una topología definida, se establecieron reglas específicas en iptables considerando protocolo, direcciones IP, puertos y estado de conexión.
+        </p>
+        <p>
+            El enfoque principal fue implementar una política restrictiva por defecto, permitiendo únicamente el tráfico estrictamente necesario para el funcionamiento del servidor web y el servidor de correo, así como la comunicación saliente controlada desde la red local.
+        </p>
+    </section>
+
+    <!-- ================= DESARROLLO ================= -->
+    <section class="actividad-seccion">
+        <h2>Desarrollo</h2>
+        <p>Teniendo en cuenta la topología de red mostrada 
+        completa la tabla con las  reglas de iptables que deberían 
+        aplicarse en el Firewall para llevar a cabo las acciones 
+        solicitadas. Las reglas, siempre que sea posible, deben 
+        determinar protocolo, dirección IP origen y destino, 
+        puerto/s origen y destino y el estado de la conexión. </p> <br>
+        <div class="galeria">
+            <img src="Image/Topologia.png" alt="Descripción de la imagen" width="800">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>Reglas iptables</h2>
+        <h3 style="color: white">1. Establecer una política restrictiva.</h3>
+        <p><strong>iptables -P FORWARD DROP</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h3 style="color: white">2. Permitir el tráfico de conexiones ya establecidas.</h3>
+        <p><strong>iptables -A FORWARD -m state --state ESTABLISHED, RELATED -j ACCEPT</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h3 style="color: white">3. Aceptar tráfico DNS (TCP) saliente de la red local.</h3>
+        <p><strong>iptables -A FORWARD -p tcp -s 192.1.2.0/24 -d 0.0.0.0/0 --dport 53 -m state --state NEW -j ACCEPT</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h3 style="color: white">4. Aceptar correo entrante proveniente de Internet en el servidor de correo.</h3>
+        <p><strong>iptables -A FORWARD -p tcp -s 0.0.0.0/0 -d 192.1.2.10 --dport 25 -m state --state NEW -j ACCEPT</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h3 style="color: white">5. Permitir correo saliente a Internet desde el servidor de correo.</h3>
+        <p><strong>iptables -A FORWARD -p tcp -s 192.1.2.10 -d 0.0.0.0/0 --dport 25 -m state --state NEW -j ACCEPT</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h3 style="color: white">6. Aceptar conexiones HTTP desde Internet a nuestro servidor web.</h3>
+        <p><strong>iptables -A FORWARD -p tcp -s 0.0.0.0/0 -d 192.1.2.11 --dport 80 -m state --state NEW -j ACCEPT</strong></p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h3 style="color: white">7. Permitir tráfico HTTP desde la red local a Internet.</h3>
+        <p><strong>iptables -A FORWARD -p tcp -s 192.1.2.0/24 -d 0.0.0.0/0 --dport 80 -m state --state NEW -j ACCEPT</strong></p>
+    </section>
+
+    <!-- ================= MULTIMEDIA ================= -->
+    <section class="actividad-seccion">
+        <h2>Evidencia y material multimedia</h2>
+
+        <h3 style="color: white">Video demostrativo</h3>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/JC3Xxtk7llY?si=C1y0Opfdfqw3IwDM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- ================= REFLEXIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Reflexión técnica</h2>
+        <p>
+            Esta práctica permitió comprender la importancia de aplicar el principio de mínimo privilegio en configuraciones de firewall. Definir una política restrictiva y luego habilitar únicamente los servicios necesarios reduce significativamente la superficie de ataque.
+        </p>
+        <p>
+            Se reforzó la necesidad de considerar el estado de las conexiones (NEW, ESTABLISHED, RELATED) para evitar bloqueos involuntarios en comunicaciones legítimas, especialmente en servicios como HTTP y correo electrónico.
+        </p>
+        <p>
+            En escenarios reales, una configuración incorrecta puede exponer servidores críticos a Internet o interrumpir servicios internos. Por ello, la planificación estructurada de reglas y su correcta interpretación son habilidades fundamentales en la administración de seguridad de red.
+    </p>
+    </section>
+
+    <!-- ================= REFERENCIAS ================= -->
+    <section class="actividad-seccion">
+        <h2>Referencias técnicas</h2>
+        <ul>
+            <li>Ellingwood, J. (2022, 1 noviembre). A Deep Dive into Iptables and Netfilter Architecture. DigitalOcean. https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture   
+            </li>
+            <li>IBM. (2026, 13 enero). Configuración de IPtables. IBM QRADAR Security Intelligence Platform. https://www.ibm.com/docs/es/dsm?topic=iptables-configuring</li>
+        </ul>
+    </section>
+
+    <!-- ================= PDF ================= -->
+    <section class="actividad-seccion descarga">
+        <h2>Documento en PDF</h2>
+        <a href="pdf/Act4.pdf" class="btn-pdf" download>
+            📄 Exportar a PDF
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+</footer>
+
+</body>
+</html>
