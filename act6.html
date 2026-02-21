@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 6 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="#" title="Prácticas">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contact" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog">
+        <h2>Actividad 06: Implementación IPSec VPN</h2>
+        <p>Configuración de túneles VPN Site-to-Site seguros</p>
+    </section>
+
+<main class="actividad-container">
+    <!-- ================= INTRODUCCIÓN ================= -->
+    <section class="actividad-seccion">
+        <h2>Introducción</h2>
+        <p>
+            En la presente actividad se implementó una VPN IPSec sitio a sitio entre dos routers Cisco, simulando la interconexión segura de dos redes privadas a través de Internet. La configuración incluyó el establecimiento de políticas ISAKMP (Phase 1), la definición del transform-set (Phase 2), la creación de listas de acceso para identificar el tráfico interesante y la aplicación del mapa criptográfico en la interfaz pública.
+        </p>
+        <p>
+            El objetivo principal fue garantizar la confidencialidad, integridad y autenticación del tráfico entre las redes 192.168.1.0/24 y 192.168.3.0/24, asegurando que únicamente el tráfico autorizado viajara cifrado a través del túnel VPN.
+        </p>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>Topología</h2>
+        <p>
+            En esta práctica se llevó a cabo la implementación de una VPN Site-to-Site utilizando el protocolo IPSec para asegurar la comunicación a través de una red pública (ISP). La topología de red utilizada consta de los siguientes dispositivos:
+        </p>
+        <ul>
+            <li>Tres routers 1941 (ISP, R1, R2)</li>
+            <li>Dos switches 2960</li>
+            <li>Dos clientes (PC´s)</li>
+        </ul>
+        <div class="galeriaT">
+            <img src="Image/act6.1.jpg" alt="Topología de la red IPSec VPN">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>1. Configuracion Inicial</h2>
+        <p>
+            Se asignan direcciones IP a cada router y se activan las interfaces. También se agrega una ruta para que R1 y R2 puedan salir hacia el ISP y comunicarse entre sí por internet.
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.2.jpg" alt="Configuración R1">
+            <img src="Image/act6.3.jpg" alt="Configuración R2">
+            <img src="Image/act6.4.jpg" alt="Configuración ISP">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>2. Licencia de seguridad habilitada</h2>
+        <p>
+            Se habilita el paquete de seguridad del router. Sin esta licencia, el router no permite usar funciones VPN/IPsec.
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.5.jpg" alt="Licencia R1">
+            <img src="Image/act6.6.jpg" alt="Licencia R2">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>3. Implementacion de ACLs</h2>
+        <p>
+            Se crea una lista de acceso que define qué tráfico se va a cifrar. Solo el tráfico entre la red 192.168.1.0 y 192.168.3.0 viajará por el túnel VPN.
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.7.jpg" alt="ACL R1">
+            <img src="Image/act6.8.jpg" alt="ACL R2">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>4. Phase 01: ISAKMP policy</h2>
+        <p>
+            Aquí se establece la conexión segura inicial entre routers. Se definen método de cifrado, autenticación y la clave compartida (pre-shared key).
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.9.jpg" alt="ISAKMP R1">
+            <img src="Image/act6.91.jpg" alt="ISAKMP R2">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>5. Phase 02: IPSec transform set.</h2>
+        <p>
+            Se especifica cómo se cifrarán los datos dentro del túnel: tipo de cifrado (AES) y método de integridad (SHA).
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.92.jpg" alt="Transform Set R1">
+            <img src="Image/act6.93.jpg" alt="Transform Set R2">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>6. Crear el mapa criptográfico</h2>
+        <p>
+            Se agrupan la política ISAKMP, el transform set y la lista de control de acceso en un mapa criptográfico para posteriormente aplicarlo al túnel.
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.94.jpg" alt="Crypto Map R1">
+            <img src="Image/act6.95.jpg" alt="Crypto Map R2">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>7. Aplicar el mapa criptográfico</h2>
+        <p>
+            El mapa se coloca en la interfaz que da a internet.
+        </p>
+        <div class="galeriaT">
+            <img src="Image/act6.96.jpg" alt="Aplicar a interfaz R1">
+            <img src="Image/act6.97.jpg" alt="Aplicar a interfaz R2">
+        </div>
+    </section>
+
+    <section class="actividad-seccion">
+        <h2>Reflexión técnica</h2>
+        <p>
+            La implementación de una VPN IPSec Site-to-Site demuestra la complejidad y robustez necesaria para proteger la información en tránsito sobre redes no confiables como Internet. El proceso de configuración en dos fases asegura tanto la negociación de los parámetros de seguridad (ISAKMP) como el cifrado y autenticación de los datos (IPSec). 
+        </p>
+        <p>
+            A través de esta práctica, se comprueba cómo la combinación de criptografía simétrica (AES), funciones hash (SHA) y listas de control de acceso (ACLs) trabajan en conjunto para garantizar la confidencialidad, integridad y disponibilidad de las comunicaciones.
+        </p>
+    </section>
+
+    <section class="actividad-seccion descarga">
+        <h2>Documento en PDF</h2>
+        <a href="pdf/Act6.pdf" class="btn-pdf" download>
+            📄 Exportar documento base
+        </a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+</footer>
+
+</body>
+</html>
