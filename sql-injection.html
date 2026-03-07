@@ -84,50 +84,103 @@
         </section>
 
         <section class="actividad-seccion">
-            <h2>Laboratorios (18 Prácticas)</h2>
+            <h2>Desarrollo Práctico: 18 Laboratorios de SQLi</h2>
+            <p style="margin-bottom: 20px; color: var(--muted-text);">
+                A continuación se detalla la progresión técnica de los laboratorios resueltos, abarcando desde la manipulación básica de consultas hasta la extracción de datos a ciegas (Blind SQLi).
+            </p>
             <table>
                 <thead>
                     <tr>
-                        <th>Laboratorios</th>
-                        <th>Tipo de Vulnerabilidad</th>
-                        <th>Descripción y Objetivo Superado</th>
+                        <th>Categoría de Ataque</th>
+                        <th>#</th>
+                        <th>Objetivo Técnico del Laboratorio</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="col-elemento">Prácticas 01 - 03</td>
-                        <td>SQLi Clásica / Evasión de Autenticación</td>
-                        <td>Explotación de vulnerabilidades en cláusulas <code>WHERE</code> para alterar la lógica de la consulta (ej. <code>' OR 1=1--</code>), logrando acceder a paneles de administración o evadir el login.</td>
+                        <td class="col-elemento" rowspan="2">SQLi Básica / Evasión</td>
+                        <td>Lab 01</td>
+                        <td>Recuperación de datos ocultos alterando la lógica de la cláusula <code>WHERE</code>.</td>
                     </tr>
                     <tr>
-                        <td class="col-elemento">Prácticas 04 - 08</td>
-                        <td>Ataques UNION (UNION-Based SQLi)</td>
-                        <td>Uso del operador <code>UNION</code> para combinar resultados y extraer datos de otras tablas. Se determinó el número de columnas, el tipo de datos y se exfiltraron credenciales de usuarios administradores.</td>
+                        <td>Lab 02</td>
+                        <td>Evasión del panel de autenticación (Login Bypass) inyectando sentencias siempre verdaderas (ej. <code>' OR 1=1--</code>).</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-elemento" rowspan="4">Ataques UNION</td>
+                        <td>Lab 03</td>
+                        <td>Determinación del número exacto de columnas devueltas por la consulta original.</td>
                     </tr>
                     <tr>
-                        <td class="col-elemento">Prácticas 09 - 10</td>
-                        <td>Extracción de Base de Datos</td>
-                        <td>Uso de consultas avanzadas y hojas de trucos (cheat sheets) para identificar la versión exacta del motor de base de datos (Oracle, MySQL, PostgreSQL) y enumerar esquemas, tablas y columnas del sistema.</td>
+                        <td>Lab 04</td>
+                        <td>Identificación de columnas compatibles con tipos de datos de texto para inyectar <em>payloads</em>.</td>
                     </tr>
                     <tr>
-                        <td class="col-elemento">Prácticas 11 - 14</td>
-                        <td>Blind SQLi (Basada en Booleanos)</td>
-                        <td>Explotación de bases de datos que no devuelven errores ni datos directamente en pantalla. Se infirió la información evaluando cambios sutiles (verdadero/falso) en la respuesta de la aplicación web.</td>
+                        <td>Lab 05</td>
+                        <td>Extracción de credenciales (usuarios y contraseñas) consultando tablas externas de la base de datos.</td>
                     </tr>
                     <tr>
-                        <td class="col-elemento">Prácticas 15 - 16</td>
-                        <td>Blind SQLi (Basada en Errores)</td>
-                        <td>Generación intencionada de errores SQL (como división por cero o conversiones fallidas de <em>casting</em>) para extraer información estructurada que la base de datos devuelve a través de los mensajes de error.</td>
+                        <td>Lab 06</td>
+                        <td>Recuperación de múltiples valores concatenados en una sola columna para optimizar la extracción.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-elemento" rowspan="4">Enumeración de Base de Datos</td>
+                        <td>Lab 07</td>
+                        <td>Consulta de la versión y el tipo de base de datos en entornos <strong>Oracle</strong>.</td>
                     </tr>
                     <tr>
-                        <td class="col-elemento">Prácticas 17 - 18</td>
-                        <td>Blind SQLi (Basada en Tiempo)</td>
-                        <td>Uso de funciones de retraso condicionales (como <code>pg_sleep()</code> o <code>WAITFOR DELAY</code>) para inferir vulnerabilidades y extraer contraseñas carácter por carácter midiendo milimétricamente el tiempo de respuesta del servidor.</td>
+                        <td>Lab 08</td>
+                        <td>Consulta de la versión y el tipo de base de datos en entornos <strong>MySQL y Microsoft SQL Server</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 09</td>
+                        <td>Listado de esquemas, tablas y columnas (Information Schema) en bases de datos no Oracle.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 10</td>
+                        <td>Listado de esquemas, tablas y columnas utilizando diccionarios y vistas nativas de Oracle.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-elemento" rowspan="4">Blind SQLi (Condicionales y Errores)</td>
+                        <td>Lab 11</td>
+                        <td>Inyección ciega con respuestas condicionales (Boolean-based), infiriendo datos a partir de cambios en la interfaz web.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 12</td>
+                        <td>Inyección ciega basada en errores condicionales (Error-based), provocando fallos matemáticos intencionales.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 13</td>
+                        <td>Extracción de información estructurada visible a través de los mensajes de error detallados del servidor.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 14</td>
+                        <td>Evasión de filtros y extracción de datos explotando vulnerabilidades en el procesamiento de XML.</td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-elemento" rowspan="4">Blind SQLi Avanzada (Tiempos y Out-of-Band)</td>
+                        <td>Lab 15</td>
+                        <td>Inyección ciega provocando retrasos de tiempo (Time delays) con funciones como <code>pg_sleep()</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 16</td>
+                        <td>Extracción de contraseñas carácter por carácter midiendo milimétricamente el tiempo de respuesta del servidor.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 17</td>
+                        <td>Inyección ciega con interacción fuera de banda (OAST / Out-of-Band), provocando consultas DNS externas.</td>
+                    </tr>
+                    <tr>
+                        <td>Lab 18</td>
+                        <td>Exfiltración silenciosa de datos sensibles a través de canales Out-of-Band (DNS).</td>
                     </tr>
                 </tbody>
             </table>
         </section>
-
         <section class="actividad-seccion">
             <h2>Reflexión técnica</h2>
             <p>
@@ -161,4 +214,5 @@
 
 </body>
 </html>
+
 
