@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 8 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+        <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="Proyectos.html" title="Proyectos">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="#contacto" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+
+                <div class="dropdown">
+                    <button class="dropbtn">ROAD TO HALL OF FAME <span>▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="sql-injection.html">SQL Injection</a>
+                        </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="blog">
+        <h2>Actividad 08 - SQL Injection</h2>
+        <p>Resolución práctica de 18 laboratorios de Inyección SQL</p>
+    </section>
+
+    <main class="actividad-container">
+
+        <section class="actividad-seccion">
+            <h2>Introducción</h2>
+            <p>
+                La inyección SQL (SQLi) es una de las vulnerabilidades web más críticas, permitiendo a un atacante interferir con las consultas que una aplicación realiza a su base de datos. En esta actividad, desarrollada en equipo, se resolvieron 18 laboratorios prácticos enfocados en diversas técnicas de explotación. El alcance abarcó desde la evasión de autenticación básica hasta ataques avanzados como inyecciones ciegas (Blind SQLi) basadas en tiempo y errores. El objetivo principal es comprender la anatomía ofensiva de estos ataques para implementar defensas efectivas a nivel de código.
+            </p>
+        </section>
+        <section class="actividad-seccion">
+            <h2>Marco Teórico</h2>
+            
+            <h3 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.1rem;">1. ¿Qué es la Inyección SQL (SQLi)?</h3>
+            <p>
+                La Inyección SQL es una vulnerabilidad de seguridad web que permite a un atacante interferir en las consultas que una aplicación realiza a su base de datos. Esto ocurre cuando la entrada proporcionada por el usuario no es sanitizada correctamente y se concatena directamente en la cadena de la consulta SQL, permitiendo que comandos maliciosos sean interpretados y ejecutados por el motor de la base de datos.
+            </p>
+
+            <h3 style="color: var(--primary-color); margin-top: 20px; margin-bottom: 10px; font-size: 1.1rem;">2. Impacto de la vulnerabilidad</h3>
+            <p>
+                Una explotación exitosa puede resultar en acceso no autorizado a datos sensibles (como contraseñas, detalles de tarjetas de crédito o información personal), la modificación o eliminación de información crítica, y en los casos más graves, la escalada de privilegios para comprometer el servidor subyacente o la infraestructura de red.
+            </p>
+
+            <h3 style="color: var(--primary-color); margin-top: 20px; margin-bottom: 10px; font-size: 1.1rem;">3. Clasificación de ataques SQLi</h3>
+            <ul>
+                <li><strong>In-Band SQLi (Clásica):</strong> El atacante utiliza el mismo canal de comunicación para lanzar el ataque y recopilar los resultados. Sus variantes más comunes son la inyección basada en errores y la inyección basada en el operador <code>UNION</code>.</li>
+                <li><strong>Inferential SQLi (Blind / Ciega):</strong> La aplicación no devuelve datos de la base de datos ni mensajes de error en pantalla. El atacante reconstruye la información enviando cargas útiles (payloads) y observando el comportamiento de la respuesta web (cambios booleanos o retrasos de tiempo).</li>
+                <li><strong>Out-of-Band SQLi:</strong> Ocurre cuando el atacante no puede usar el mismo canal para lanzar el ataque y recopilar información. Depende de las capacidades de la base de datos para realizar solicitudes de red externas (por ejemplo, peticiones DNS o HTTP) para exfiltrar los datos.</li>
+            </ul>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2>Laboratorios (18 Prácticas)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Laboratorios</th>
+                        <th>Tipo de Vulnerabilidad</th>
+                        <th>Descripción y Objetivo Superado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-elemento">Prácticas 01 - 03</td>
+                        <td>SQLi Clásica / Evasión de Autenticación</td>
+                        <td>Explotación de vulnerabilidades en cláusulas <code>WHERE</code> para alterar la lógica de la consulta (ej. <code>' OR 1=1--</code>), logrando acceder a paneles de administración o evadir el login.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-elemento">Prácticas 04 - 08</td>
+                        <td>Ataques UNION (UNION-Based SQLi)</td>
+                        <td>Uso del operador <code>UNION</code> para combinar resultados y extraer datos de otras tablas. Se determinó el número de columnas, el tipo de datos y se exfiltraron credenciales de usuarios administradores.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-elemento">Prácticas 09 - 10</td>
+                        <td>Extracción de Base de Datos</td>
+                        <td>Uso de consultas avanzadas y hojas de trucos (cheat sheets) para identificar la versión exacta del motor de base de datos (Oracle, MySQL, PostgreSQL) y enumerar esquemas, tablas y columnas del sistema.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-elemento">Prácticas 11 - 14</td>
+                        <td>Blind SQLi (Basada en Booleanos)</td>
+                        <td>Explotación de bases de datos que no devuelven errores ni datos directamente en pantalla. Se infirió la información evaluando cambios sutiles (verdadero/falso) en la respuesta de la aplicación web.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-elemento">Prácticas 15 - 16</td>
+                        <td>Blind SQLi (Basada en Errores)</td>
+                        <td>Generación intencionada de errores SQL (como división por cero o conversiones fallidas de <em>casting</em>) para extraer información estructurada que la base de datos devuelve a través de los mensajes de error.</td>
+                    </tr>
+                    <tr>
+                        <td class="col-elemento">Prácticas 17 - 18</td>
+                        <td>Blind SQLi (Basada en Tiempo)</td>
+                        <td>Uso de funciones de retraso condicionales (como <code>pg_sleep()</code> o <code>WAITFOR DELAY</code>) para inferir vulnerabilidades y extraer contraseñas carácter por carácter midiendo milimétricamente el tiempo de respuesta del servidor.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2>Reflexión técnica</h2>
+            <p>
+                La resolución de estos 18 laboratorios evidencia que la inyección SQL sigue siendo devastadora debido a la concatenación insegura de cadenas de texto por parte de los desarrolladores. Los ataques más avanzados, como las inyecciones ciegas (Blind SQLi), demuestran que la simple ausencia de mensajes de error en pantalla no es una medida de seguridad válida frente a un atacante metódico. 
+            </p>
+            <p>
+                La única forma definitiva de mitigar estas amenazas en el desarrollo web moderno es abandonar la creación dinámica de consultas y adoptar el uso estricto de consultas parametrizadas (Prepared Statements) o el empleo de ORMs (Object-Relational Mappings) que manejen la sanitización de datos de forma nativa.
+            </p>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2>Referencias técnicas</h2>
+            <ul>
+                <li>PortSwigger. (s.f.). SQL injection. Web Security Academy. Recuperado de https://portswigger.net/web-security/sql-injection</li>
+                <li>OWASP. (s.f.). SQL Injection. OWASP Foundation. Recuperado de https://owasp.org/www-community/attacks/SQL_Injection</li>
+            </ul>
+        </section>
+
+        <section class="actividad-seccion descarga">
+            <h2>Documento en PDF</h2>
+            <a href="pdf/Act08-Equipo02.pdf" class="btn-pdf" download>
+                📄 Exportar documento de la Actividad 08
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+    </footer>
+
+</body>
+</html>
