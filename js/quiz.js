@@ -22,7 +22,7 @@ const scenarios = [
     {
         sender: "Soporte Técnico Microsoft <admin@outlook-security-alert.com>",
         subject: "Se ha detectado un inicio de sesión inusual",
-        body: "<img src='https://upload.wikimedia.org/wikipedia/commons/e/ef/Microsoft_logo_%282012%29.svg' width='100' style='margin-bottom:15px;'><br>Hola <strong>[NOMBRE]</strong>,<br><br>Detectamos un inicio de sesión en tu cuenta desde Rusia. Si no fuiste tú, por favor verifica tu identidad descargando el reporte adjunto.<br><br><div style='background:rgba(255,76,76,0.1); border:1px solid #ff4c4c; padding:12px; border-radius:6px; display:flex; align-items:center; width:max-content; margin-top:15px;'><span style='font-size:1.5rem; margin-right:10px;'>📎</span> <code>reporte_actividad.pdf.exe</code></div>",
+        body: "<img src='https://img.icons8.com/color/100/microsoft.png' width='50' style='margin-bottom:15px;'><br>Hola <strong>[NOMBRE]</strong>,<br><br>Detectamos un inicio de sesión en tu cuenta desde Rusia. Si no fuiste tú, por favor verifica tu identidad descargando el reporte adjunto.<br><br><div style='background:rgba(255,76,76,0.1); border:1px solid #ff4c4c; padding:12px; border-radius:6px; display:flex; align-items:center; width:max-content; margin-top:15px;'><span style='font-size:1.5rem; margin-right:10px;'>📎</span> <code>reporte_actividad.pdf.exe</code></div>",
         type: "phishing",
         feedback: "<strong>Vector: Malware/Phishing.</strong> El dominio del remitente es fraudulento y el archivo adjunto es un ejecutable (.exe) oculto bajo un doble nombre de extensión. ¡Jamás descargues eso!"
     },
@@ -78,7 +78,7 @@ const scenarios = [
     {
         sender: "Microsoft OneDrive <noreply@sharepoint-online-docs.com>",
         subject: "RRHH ha compartido 'Estructura_Salarial_2026.xlsx' contigo",
-        body: "<img src='https://upload.wikimedia.org/wikipedia/commons/3/3c/Microsoft_Office_OneDrive_%282019%E2%80%93present%29.svg' width='50' style='margin-bottom:10px;'><br>El departamento de Recursos Humanos ha compartido un documento altamente confidencial contigo.<br><br>Para visualizar el documento, debes otorgar permisos a la aplicación de lectura 'SharePoint Viewer'.<br><br><div style='text-align:center; margin-top:20px;'><button style='background:transparent; color:#0078d4; padding:10px 15px; border:2px solid #0078d4; border-radius:4px; font-weight:bold;'>Conceder Permisos</button></div>",
+        body: "<img src='https://img.icons8.com/color/100/microsoft-onedrive-2019.png' width='50' style='margin-bottom:10px;'><br>El departamento de Recursos Humanos ha compartido un documento altamente confidencial contigo.<br><br>Para visualizar el documento, debes otorgar permisos a la aplicación de lectura 'SharePoint Viewer'.<br><br><div style='text-align:center; margin-top:20px;'><button style='background:transparent; color:#0078d4; padding:10px 15px; border:2px solid #0078d4; border-radius:4px; font-weight:bold; cursor:pointer;'>Conceder Permisos</button></div>",
         type: "phishing",
         feedback: "<strong>Vector: OAuth Consent Phishing.</strong> En lugar de robar tu contraseña, te engañan para que le des permisos a una aplicación maliciosa de terceros, dándole acceso a leer tus correos y archivos reales."
     }
