@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 2 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/inicio.png" alt="Inicio">
+                </a>
+
+                <a href="Proyectos.html" title="Prácticas">
+                    <img src="Image/icons/practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contacto" title="Contacto">
+                    <img src="Image/icons/contacto.png" alt="Contacto">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="blog">
+        <h2>PR02 - Parte 2: El eslabón más débil</h2>
+        <p>10 Escenarios Prácticos de Ingeniería Social</p>
+    </section>
+
+    <main class="actividad-container quiz-app">
+
+        <section id="screen-start" class="quiz-screen active">
+            <div class="start-card">
+                <!-- <div class="start-icon">🔍</div> -->
+                <h2>Reto de Ingeniería Social</h2>
+                <div class="start-divider"></div>
+                
+                <p class="start-lead">La ciberseguridad no solo se trata de firewalls y antivirus;<br><strong>el eslabón más débil siempre es el factor humano.</strong></p>
+                
+                <p style="color: #cccccc; font-size: 0.95rem; margin-bottom: 25px;">
+                    En este reto te enfrentaremos a 10 situaciones cotidianas. Tu misión es decidir si son correos legítimos o ataques de ingeniería social. ¡El tiempo corre!
+                </p>
+                
+                <button id="btn-start" class="btn-quiz pulse-button">▶ Iniciar Misión</button>
+            </div>
+        </section>
+
+        <section id="screen-name" class="quiz-screen">
+            <div class="start-card">
+                <!-- <div class="start-icon">🕵️‍♂️</div> -->
+                <h2>Identificación de Usuario</h2>
+                <div class="start-divider"></div>
+                
+                <p class="start-lead">Ingresa tu alias de operador para personalizar la simulación y registrar tu puntuación en el <strong>Ranking Global</strong>.</p>
+                
+                <div class="input-container">
+                    <input type="text" id="user-alias" class="neon-input" placeholder="Ej. HeizelllNull" autocomplete="off">
+                </div>
+                
+                <button id="btn-name" class="btn-quiz pulse-button" style="margin-top: 20px;">➔ Continuar Misión</button>
+            </div>
+        </section>
+
+        <section id="screen-quiz" class="quiz-screen">
+            <div class="quiz-progress">Escenario <span id="current-q">1</span> de 10</div>
+            
+            <div class="quiz-card">
+                <div class="quiz-header">
+                    <div class="quiz-header-info">
+                        <span id="q-sender" class="quiz-sender">De: ...</span>
+                        <span id="q-subject" class="quiz-subject">Asunto: ...</span>
+                    </div>
+                </div>
+                <div id="q-body" class="quiz-body">
+                    </div>
+            </div>
+
+            <div class="quiz-actions">
+                <button id="btn-phishing" class="btn-choice btn-danger">🚨 Es Phishing</button>
+                <button id="btn-real" class="btn-choice btn-safe">✅ Es Legítimo</button>
+            </div>
+        </section>
+
+        <section id="screen-feedback" class="quiz-screen">
+            <h2 id="feedback-title">¡Correcto! / ¡Caíste!</h2>
+            
+            <p id="feedback-time" style="color: #ffffff; font-size: 1rem; font-weight: 500; margin-bottom: 15px;"></p>
+            
+            <div id="feedback-text" class="quiz-feedback-box" style="color: #e0e0e0; font-size: 0.95rem;">
+                </div>
+            <button id="btn-next" class="btn-quiz" style="margin-top: 20px;">Siguiente Escenario ➔</button>
+        </section>
+
+        <section id="screen-results" class="quiz-screen">
+            <h2>Reporte de Simulación</h2>
+            
+            <div class="results-grid">
+                <div class="result-box">
+                    <h3>Puntuación</h3>
+                    <p id="final-score" class="big-stat">0 / 10</p>
+                </div>
+                <div class="result-box">
+                    <h3>Tiempo Total</h3>
+                    <p id="final-time" class="big-stat">0s</p>
+                </div>
+            </div>
+
+            <div class="hardest-scenario-box">
+                <h3 style="color: var(--primary-color);">🧠 Análisis de Rendimiento</h3>
+                <p id="hardest-feedback">Calculando el escenario que más te costó...</p>
+            </div>
+
+            <div class="ranking-container">
+                <h3>🏆 Ranking Global </h3>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Posición</th>
+                            <th>Alias</th>
+                            <th>Puntuación</th>
+                            <th>Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranking-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <button onclick="location.reload()" class="btn-quiz" style="margin-top: 20px;">Volver a intentar</button>
+        </section>
+
+    </main>
+
+    <script src="js/quiz.js"></script>
+
+    <footer>
+        <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+    </footer>
+
+</body>
+</html>
