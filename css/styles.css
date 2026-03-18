@@ -948,3 +948,397 @@ td li {
         left: 0%;
     }
 }
+/* =====================
+   ESTILO GOOGLE PHISHING QUIZ (PR02 - Parte 2)
+===================== */
+.quiz-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna para que parezca un quiz real */
+    gap: 40px;
+    margin-top: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quiz-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.quiz-card:hover {
+    border-color: rgba(0, 255, 156, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Cabecera simulando un cliente de correo o alerta */
+.quiz-header {
+    background: var(--card-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-sender {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.quiz-subject {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.quiz-tag {
+    background: rgba(0, 255, 156, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Cuerpo del pretexto (el mensaje del atacante) */
+.quiz-body {
+    padding: 25px 20px;
+    color: #ddd;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.quiz-body strong {
+    color: var(--primary-color);
+}
+
+/* Panel de revelación / Objetivo (estilo feedback de Google) */
+.quiz-feedback {
+    background: rgba(0, 255, 156, 0.05);
+    border-top: 2px solid var(--primary-color);
+    padding: 20px;
+}
+
+.quiz-feedback-title {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quiz-feedback p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+}
+
+/* =====================
+   APP QUIZ INTERACTIVO
+===================== */
+.quiz-app {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quiz-screen {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.quiz-screen.active {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Inputs y Botones */
+#user-alias {
+    background: var(--bg-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    margin: 20px 0;
+    padding: 12px 20px;
+    width: 80%;
+    max-width: 400px;
+}
+
+#user-alias:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 156, 0.4);
+}
+
+.btn-quiz {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 25px;
+    transition: all 0.3s;
+}
+
+.btn-quiz:hover {
+    background: #00cc7d;
+    transform: scale(1.05);
+}
+
+/* Tarjeta del mensaje y acciones */
+.quiz-progress {
+    color: var(--muted-text);
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.quiz-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.btn-choice {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.btn-danger {
+    background: rgba(255, 76, 76, 0.2);
+    border-color: #ff4c4c;
+    color: #ff4c4c;
+}
+
+.btn-danger:hover {
+    background: #ff4c4c;
+    color: #fff;
+}
+
+.btn-safe {
+    background: rgba(0, 255, 156, 0.2);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-safe:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.quiz-feedback-box {
+    background: var(--card-color);
+    border-left: 4px solid var(--primary-color);
+    margin: 20px auto;
+    padding: 20px;
+    text-align: left;
+    max-width: 600px;
+}
+/* =====================
+   RESULTADOS Y RANKING (QUIZ)
+===================== */
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.result-box {
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.big-stat {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.hardest-scenario-box {
+    background: rgba(0, 255, 156, 0.05);
+    border-left: 4px solid var(--primary-color);
+    padding: 20px;
+    text-align: left;
+    margin: 25px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.ranking-container {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: var(--card-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ranking-table th, .ranking-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.ranking-table th {
+    background: #05080c;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.ranking-table tr:hover {
+    background: rgba(0, 255, 156, 0.05);
+}
+
+.current-user-row {
+    background: rgba(0, 255, 156, 0.15) !important;
+    font-weight: bold;
+}
+/* =====================
+   PANTALLA DE INICIO (MEJORADA)
+===================== */
+.start-card {
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    padding: 50px 30px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+/* Línea superior con gradiente neón */
+.start-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+.start-icon {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0, 255, 156, 0.5);
+}
+
+.start-card h2 {
+    color: #ffffff;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Pequeña línea divisoria debajo del título */
+.start-divider {
+    background: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 255, 156, 0.8);
+    height: 3px;
+    margin: 0 auto 25px auto;
+    width: 60px;
+}
+
+.start-lead {
+    color: #e0e0e0;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.start-lead strong {
+    color: var(--primary-color);
+}
+
+/* Animación de latido para el botón de inicio */
+.pulse-button {
+    font-size: 1.1rem !important;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    padding: 15px 40px !important;
+    text-transform: uppercase;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 156, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 255, 156, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 156, 0); }
+}
+/* =====================
+   INPUT DE USUARIO (ESTILO NEÓN)
+===================== */
+.input-container {
+    margin: 30px auto;
+    max-width: 400px;
+    position: relative;
+}
+
+.neon-input {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace; /* Fuente estilo consola */
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.neon-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 255, 156, 0.4), inset 0 0 10px rgba(0, 255, 156, 0.1);
+    outline: none;
+}
+
+.neon-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-family: sans-serif;
+}
