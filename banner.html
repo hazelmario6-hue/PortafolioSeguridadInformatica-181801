@@ -256,6 +256,113 @@
             color: var(--primary-color);
             font-weight: bold;
         }
+        
+                /* =====================
+           INTEL FEED & QR LAB
+        ===================== */
+        .intel-feed, .qr-lab {
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .intel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .intel-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 2px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        .intel-card:hover {
+            border-top-color: var(--primary-color);
+        }
+
+        .intel-icon { font-size: 2rem; margin-bottom: 15px; }
+        .intel-card h3 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.1rem; }
+        .intel-card p { font-size: 0.9rem; line-height: 1.4; color: #ccc; }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .steps-list li {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ddd;
+        }
+
+        .steps-list span {
+            background: var(--primary-color);
+            color: #000;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.7rem;
+        }
+
+        /* Efecto QR Escáner */
+        .qr-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .qr-text { flex: 1; }
+        .qr-visual { flex: 0 0 250px; text-align: center; }
+
+        .qr-scanner-effect {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border: 2px solid var(--border-color);
+            padding: 10px;
+            background: #fff; /* Fondo blanco para que el QR resalte */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .qr-image-mockup {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
+            animation: scan 3s infinite linear;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
     </style>
 </head>
 <body>
@@ -339,6 +446,53 @@
                             </tbody>
                         </table>
                         <div class="cmd-line" style="margin-top: 15px; animation: blink 1s infinite;">_</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <section class="intel-feed">
+            <div class="case-header">
+                <h2>🔍 SECURITY INTEL: <span>¿Sabías que...?</span></h2>
+            </div>
+            
+            <div class="intel-grid">
+                <div class="intel-card">
+                    <div class="intel-icon">🔄</div>
+                    <h3>Tabnapping</h3>
+                    <p>Es un ataque silencioso que ocurre cuando dejas una pestaña inactiva. El atacante usa JS para cambiar el contenido de esa pestaña por una página de login falsa mientras no la ves. Al volver, crees que tu sesión expiró y entregas tus credenciales.</p>
+                </div>
+
+                <div class="intel-card">
+                    <div class="intel-icon">⚙️</div>
+                    <h3>Fases de un Exploit</h3>
+                    <ol class="steps-list">
+                        <li><span>1</span> Reconocimiento (OSINT)</li>
+                        <li><span>2</span> Escaneo de Vulnerabilidades</li>
+                        <li><span>3</span> Ganar Acceso (Explotación)</li>
+                        <li><span>4</span> Mantenimiento de Acceso</li>
+                        <li><span>5</span> Borrado de Huellas</li>
+                    </ol>
+                </div>
+
+                <div class="intel-card">
+                    <div class="intel-icon">⚠️</div>
+                    <h3>Ingeniería Social</h3>
+                    <p>El 95% de las brechas de seguridad exitosas tienen como origen un error humano. No se necesita romper un cifrado de 256 bits si puedes convencer a un usuario de que "actualice su contraseña" en un link falso.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="qr-lab">
+            <div class="qr-container">
+                <div class="qr-text">
+                    <div class="badge" style="margin-bottom: 10px;">VULNERABILIDAD: QR-02</div>
+                    <h2>Ataques de <span class="neon-text">Quishing</span></h2>
+                    <p>Los códigos QR son el cebo perfecto: el ojo humano no puede leer la URL oculta. Los atacantes pegan sus propios códigos sobre QRs legítimos en menús o parquímetros para redirigir a los usuarios a sitios de cosecha de datos.</p>
+                </div>
+                <div class="qr-visual">
+                    <div class="qr-scanner-effect">
+                        <img src="image_e12d49.png" alt="QR Attack Scenario" class="qr-image-mockup">
+                        <div class="scanner-line"></div>
                     </div>
                 </div>
             </div>
