@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup Portafolio HeizelllNull</title>
+    <style>
+        /* =====================
+           VARIABLES Y RESET
+        ===================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --bg-color: #0d1117;
+            --border-color: #30363d;
+            --card-color: #161b22;
+            --muted-text: #8b949e;
+            --primary-color: #00ff9c;
+            --text-color: #e6edf3;
+            --console-bg: #05080c;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            padding: 40px 20px;
+        }
+
+        /* Fondo de cuadrícula cibernética sutil */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(rgba(0, 255, 156, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 156, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* =====================
+           SECCIÓN HERO (EL GANCHO)
+        ===================== */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 40px 0 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-logo {
+            flex: 0 0 300px;
+            position: relative;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 0 40px rgba(0, 255, 156, 0.15);
+            /* Filtro para que el logo se vea más "hacker" y resalte */
+            filter: contrast(1.1) drop-shadow(0px 0px 10px rgba(0, 255, 156, 0.3));
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .neon-text {
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(0, 255, 156, 0.4);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--muted-text);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 255, 156, 0.1);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* =====================
+           SECURITY LAB (CASO DE ESTUDIO)
+        ===================== */
+        .case-file {
+            margin-top: 60px;
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-file::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .case-header {
+            margin-bottom: 30px;
+        }
+
+        .case-header h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .case-header h2 span {
+            color: var(--primary-color);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* Mockups visuales abstractos */
+        .mockups-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .mockup-card {
+            background: var(--console-bg);
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            position: absolute;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        .m-email {
+            width: 80%;
+            top: 0; left: 0;
+            border-top: 3px solid #ff4c4c;
+            z-index: 1;
+        }
+
+        .m-wa {
+            width: 60%;
+            top: 80px; right: 10px;
+            border-top: 3px solid #00cc7d;
+            background: #0b141a;
+            z-index: 2;
+        }
+
+        .m-browser {
+            width: 70%;
+            bottom: 20px; left: 15%;
+            border-top: 3px solid #1a73e8;
+            background: #fff;
+            color: #000;
+            z-index: 3;
+        }
+
+        /* Widget del Ranking estilo Terminal */
+        .terminal-widget {
+            background: var(--console-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #111;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .t-red { background: #ff5f56; }
+        .t-yellow { background: #ffbd2e; }
+        .t-green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cmd-line {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .ranking-table-mock {
+            width: 100%;
+            border-collapse: collapse;
+            color: #e6edf3;
+            font-size: 0.85rem;
+        }
+
+        .ranking-table-mock th {
+            text-align: left;
+            padding-bottom: 10px;
+            color: #8b949e;
+            border-bottom: 1px dashed #333;
+        }
+
+        .ranking-table-mock td {
+            padding: 10px 0;
+        }
+
+        .highlight-row {
+            background: rgba(0, 255, 156, 0.1);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header class="hero">
+            <div class="hero-logo">
+                <img src="image.png" alt="HeizelllNull Logo">
+            </div>
+            <div class="hero-text">
+                <div class="badge">ESTADO: OPERATIVO</div>
+                <h1>Digital Forensics & <br><span class="neon-text">Security Awareness Lab</span></h1>
+                <p>Analizando vectores de ataque multi-plataforma para fortalecer defensas técnicas y el factor humano en las organizaciones.</p>
+            </div>
+        </header>
+
+        <section class="case-file">
+            <div class="case-header">
+                <h2>📁 CASE FILE: <span>Phishing Simulator v2.0</span></h2>
+                <p style="color: var(--muted-text); margin-top: 5px;">Simulación interactiva de 10 vectores de ataque (OAuth, Smishing, HTML Smuggling) conectada a Firebase.</p>
+            </div>
+
+            <div class="case-grid">
+                <div class="mockups-container">
+                    <div class="mockup-card m-email">
+                        <strong style="color: #fff">FROM:</strong> Soporte TI &lt;admin@tu-empresa-outlook.com&gt;<br>
+                        <strong style="color: #fff">ATTACH:</strong> reporte_actividad.exe<br>
+                        <span style="color: #ff4c4c;">[!] MALWARE DETECTED</span>
+                    </div>
+                    
+                    <div class="mockup-card m-wa">
+                        <strong>Director General</strong><br>
+                        "Necesito un favor urgente. Compra 5 tarjetas de regalo..."<br>
+                        <span style="color: #00cc7d;">✓✓</span>
+                    </div>
+
+                    <div class="mockup-card m-browser">
+                        <strong style="font-family: sans-serif; font-size: 0.9rem;">Workspace TI</strong> quiere acceder a tu cuenta.<br><br>
+                        <span style="color: #555;">Permisos: Leer, redactar y eliminar correos.</span>
+                    </div>
+                </div>
+
+                <div class="terminal-widget">
+                    <div class="terminal-header">
+                        <div class="t-dot t-red"></div>
+                        <div class="t-dot t-yellow"></div>
+                        <div class="t-dot t-green"></div>
+                        <span style="margin-left: 10px;">root@heizelllnull:~/firebase/db</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="cmd-line">~> fetch --collection="ranking" --limit=3</div>
+                        <table class="ranking-table-mock">
+                            <thead>
+                                <tr>
+                                    <th>POS</th>
+                                    <th>ALIAS</th>
+                                    <th>SCORE</th>
+                                    <th>TIME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#1</td>
+                                    <td>CyberNinja99</td>
+                                    <td>10/10</td>
+                                    <td>24.2s</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>#2</td>
+                                    <td>HeizelllNull</td>
+                                    <td>9/10</td>
+                                    <td>34.1s</td>
+                                </tr>
+                                <tr>
+                                    <td>#3</td>
+                                    <td>SecStudent</td>
+                                    <td>8/10</td>
+                                    <td>41.5s</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="cmd-line" style="margin-top: 15px; animation: blink 1s infinite;">_</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
