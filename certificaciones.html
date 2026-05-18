@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Evidencias</title>
+
+    <!-- SEO básico -->
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <style>
+        /* =====================
+           SECCIÓN CERTIFICACIONES (TABS)
+        ===================== */
+        .cert-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            margin-top: 30px;
+            align-items: start;
+        }
+
+        /* Menú Lateral */
+        .cert-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cert-tab {
+            background: var(--card-color);
+            color: var(--muted-text);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-tab:hover {
+            background: rgba(0, 255, 156, 0.05);
+            border-color: rgba(0, 255, 156, 0.3);
+            color: #fff;
+        }
+
+        /* Estado Activo del Botón */
+        .cert-tab.active {
+            background: var(--console-bg);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.1);
+        }
+
+        .cert-tab.active::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0;
+            width: 4px; height: 100%;
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Contenido del Panel */
+        .cert-content {
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .cert-panel {
+            display: none; /* Oculto por defecto */
+            padding: 40px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .cert-panel.active {
+            display: block; /* Solo se muestra el activo */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cert-panel-header {
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cert-panel-header h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .cert-status {
+            background: rgba(0, 255, 156, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            border: 1px solid var(--primary-color);
+        }
+
+       /* =====================
+           NUEVO LAYOUT: TARJETAS Y PDF INCRUSTADO
+        ===================== */
+        
+        .cert-panel-body {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Separación entre la sección de arriba y el PDF abajo */
+        }
+
+        .top-cards-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* La reseña toma más espacio que el badge */
+            gap: 25px;
+        }
+
+        /* Estilo de las nuevas tarjetas (Cajas tipo panel) */
+        .info-card {
+            background: rgba(255, 255, 255, 0.02); /* Fondo ligeramente más claro que el main */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* El título con la barra lateral estilo tu captura, pero en neón */
+        .card-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary-color);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .info-card p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            text-align: justify;
+            margin: 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Contenedor del Visor PDF */
+        .pdf-viewer-container {
+            width: 100%;
+            height: 500px; /* Altura del visor del PDF */
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #444;
+            background: #222; /* Fondo por si tarda en cargar */
+        }
+
+        .pdf-viewer-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+/* =====================
+           CAJA DEL BADGE DIGITAL (ACTUALIZADO PARA IMAGEN CISCO)
+        ===================== */
+        
+        .info-card.text-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra todo horizontalmente */
+            justify-content: center; /* Centra todo verticalmente */
+        }
+
+        .badge-container {
+            width: 100%; /* Toma el ancho de la tarjeta */
+            max-width: 180px; /* Tamaño máximo para que no se vea gigante */
+            height: auto; /* Permite que la altura se ajuste proporcionalmente */
+            margin: 0 auto 20px auto; /* Centrado con margen inferior */
+            background: transparent; /* Quitamos el fondo blanco */
+            border-radius: 8px; /* Bordes ligeramente redondeados, no circulares */
+            padding: 0; /* Sin relleno para que la imagen toque los bordes */
+            box-shadow: 0 0 20px rgba(0, 255, 156, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none; /* Quitamos el borde sólido */
+        }
+
+        .badge-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px; /* Asegura que la imagen tenga los mismos bordes redondeados */
+            object-fit: contain; /* Muestra toda la imagen sin recortar */
+            display: block;
+        }
+
+        .badge-verify {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            display: inline-block; /* Ayuda al centrado */
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .badge-verify:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--primary-color);
+            border: 1px solid var(--primary-color);
+            background: rgba(0, 255, 156, 0.05);
+        }
+
+        /* Responsividad para móviles: Si la pantalla es pequeña, apila todo */
+        @media (max-width: 850px) {
+            .top-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .cert-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="#" title="Inicio">
+                    <img src="Image/icons/inicio.png" alt="Inicio">
+                </a>
+
+                <a href="Proyectos.html" title="Proyectos">
+                    <img src="Image/icons/practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="#contacto" title="Contacto">
+                    <img src="Image/icons/contacto.png" alt="Contacto">
+                </a>
+                <a href="#" title="Certificaciones">
+                    <img src="Image/icons/certificaciones.png" alt="Certificaciones">
+                </a>
+
+                <div class="dropdown">
+                    <button class="dropbtn">ROAD TO HALL OF FAME <span>▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="sql-injection.html">SQL Injection</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="certifications-section" style="margin-top: 80px;">
+            <div class="case-header">
+                <h2><span>Certificaciones Oficiales</span></h2>
+                <p style="color: var(--muted-text); margin-top: 5px; font-size: 0.9rem;">
+                    Registro de acreditaciones, insignias digitales y reflexión sobre el proceso de formación técnica en ciberseguridad.
+                </p>
+            </div>
+
+            <div class="cert-layout">
+                <aside class="cert-sidebar">
+                    <button class="cert-tab active" data-target="cert-1">01. Introducción a la Ciberseguridad</button>
+                    <button class="cert-tab" data-target="cert-2">02. Conceptos Básicos de Redes</button>
+                    <button class="cert-tab" data-target="cert-3">03. Dispositivos de Red y Config.</button>
+                    <button class="cert-tab" data-target="cert-4">04. Seguridad en Terminales</button>
+                    <button class="cert-tab" data-target="cert-5">05. Administración de Amenazas</button>
+                    <button class="cert-tab" data-target="cert-6">06. Analista Junior en Ciberseguridad</button>
+                    <button class="cert-tab" data-target="cert-7">07. Hacker Ético</button>
+                </aside>
+
+                <main class="cert-content">
+                    
+                    <div id="cert-1" class="cert-panel active">
+                        <div class="cert-panel-header">
+                            <h3>Introducción a la Ciberseguridad</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        Este curso me hizo entender que la ciberseguridad ya no es algo exclusivo de hackers o grandes empresas tecnológicas, sino algo que afecta literalmente a cualquier persona que use internet. Antes veía temas como robo de datos, ataques o filtraciones como noticias lejanas que solo les pasaban a compañías enormes, pero al avanzar en el curso entendí que todos dejamos huellas digitales constantemente y que muchas veces no somos conscientes de lo vulnerable que puede ser nuestra información. Lo que más me llamó la atención fue darme cuenta de que un simple descuido puede abrir la puerta a muchísimos problemas, desde perder una cuenta hasta afectar la economía o la reputación de una persona.
+
+También me gustó que el curso no solo hablara de ataques, sino de la importancia de la prevención. Muchas veces pensamos que la tecnología avanza únicamente para hacer la vida más cómoda, pero pocas veces reflexionamos en cómo también genera nuevas amenazas. Me dejó pensando en lo rápido que cambia el mundo digital y cómo la seguridad debe evolucionar igual de rápido para mantenerse al día.
+
+Otro aspecto importante fue descubrir que la ciberseguridad es una carrera con muchísimo futuro. Antes la veía como algo demasiado complejo o reservado para genios de la programación, pero el curso mostró que todo comienza con bases simples, curiosidad y ganas de aprender. Además, me hizo sentir interés por seguir aprendiendo más sobre redes, amenazas y protección de sistemas. En general, este curso me ayudó a ver la tecnología desde otra perspectiva, entendiendo que detrás de cada aplicación, página o sistema existe la necesidad de proteger información valiosa.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="Image/bagdet/1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="https://www.credly.com/badges/690431ff-304d-40cf-a715-55bf14ed6170" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/1_IntroCiberseguridad_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="cert-2" class="cert-panel">
+                        <div class="cert-panel-header">
+                            <h3>Conceptos Basicos de Redes</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        Este curso me ayudó a comprender algo que usamos todos los días pero que casi nunca pensamos cómo funciona realmente: las redes. Siempre utilizamos internet para estudiar, trabajar, jugar o comunicarnos, pero rara vez nos detenemos a analizar todo lo que ocurre detrás para que un mensaje llegue de un dispositivo a otro en segundos. Aprender sobre direcciones IP, routers, switches y protocolos me hizo ver que las redes son prácticamente la columna vertebral del mundo digital.
+
+Lo que más me gustó fue entender que cada dispositivo conectado tiene una función específica y que todos trabajan juntos como si fueran partes de un enorme sistema coordinado. Antes escuchaba términos técnicos y parecían imposibles de comprender, pero el curso los explicó de una manera más clara y lógica. Poco a poco empecé a relacionar conceptos y entendí por qué las redes son tan importantes para áreas como la ciberseguridad, el desarrollo de software o incluso los videojuegos en línea.
+
+También reflexioné sobre lo dependientes que somos del internet. Cuando una red falla, prácticamente todo se detiene: la comunicación, las clases, los bancos, las empresas y hasta el entretenimiento. Eso demuestra lo importante que es contar con infraestructuras bien diseñadas y seguras.
+
+Además, este curso me hizo sentir más confianza en mis habilidades técnicas. Muchas veces uno piensa que estos temas son demasiado complicados, pero cuando empiezas desde lo básico y practicas, todo comienza a tener sentido. Entendí que dominar redes no solo sirve para una materia o certificación, sino que es una base fundamental para cualquier persona que quiera dedicarse al área de tecnologías de la información.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="Image/bagdet/1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="enlace-verificacion-credly" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/2_ConceptosBasicos_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="cert-3" class="cert-panel">
+                        <div class="cert-panel-header">
+                            <h3>Introducción a la Ciberseguridad</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        El marco ITU-T X.800 y el Glosario oficial RFC son marcos de vital importancia para la seguridad informática. El marco ITU-T X.800 es el comunicado emitido por la Unión Internacional de Telecomunicaciones (UIT), que tiene como propósito brindar un servicio de seguridad a través de seis definiciones clave para mantener a flote la triada de la seguridad informática: integridad, disponibilidad y confidencialidad, mientras que el RFC 4949 ofrece una amplia gama de conceptos necesarios para comprender de forma formal la rama de la ciberseguridad.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="ruta/a/tu/badge1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="enlace-verificacion-credly" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/1_IntroCiberseguridad_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="cert-4" class="cert-panel">
+                        <div class="cert-panel-header">
+                            <h3>Introducción a la Ciberseguridad</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        El marco ITU-T X.800 y el Glosario oficial RFC son marcos de vital importancia para la seguridad informática. El marco ITU-T X.800 es el comunicado emitido por la Unión Internacional de Telecomunicaciones (UIT), que tiene como propósito brindar un servicio de seguridad a través de seis definiciones clave para mantener a flote la triada de la seguridad informática: integridad, disponibilidad y confidencialidad, mientras que el RFC 4949 ofrece una amplia gama de conceptos necesarios para comprender de forma formal la rama de la ciberseguridad.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="ruta/a/tu/badge1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="enlace-verificacion-credly" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/1_IntroCiberseguridad_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="cert-5" class="cert-panel">
+                        <div class="cert-panel-header">
+                            <h3>Introducción a la Ciberseguridad</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        El marco ITU-T X.800 y el Glosario oficial RFC son marcos de vital importancia para la seguridad informática. El marco ITU-T X.800 es el comunicado emitido por la Unión Internacional de Telecomunicaciones (UIT), que tiene como propósito brindar un servicio de seguridad a través de seis definiciones clave para mantener a flote la triada de la seguridad informática: integridad, disponibilidad y confidencialidad, mientras que el RFC 4949 ofrece una amplia gama de conceptos necesarios para comprender de forma formal la rama de la ciberseguridad.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="ruta/a/tu/badge1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="enlace-verificacion-credly" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/1_IntroCiberseguridad_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="cert-6" class="cert-panel">
+                        <div class="cert-panel-header">
+                            <h3>Introducción a la Ciberseguridad</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        El marco ITU-T X.800 y el Glosario oficial RFC son marcos de vital importancia para la seguridad informática. El marco ITU-T X.800 es el comunicado emitido por la Unión Internacional de Telecomunicaciones (UIT), que tiene como propósito brindar un servicio de seguridad a través de seis definiciones clave para mantener a flote la triada de la seguridad informática: integridad, disponibilidad y confidencialidad, mientras que el RFC 4949 ofrece una amplia gama de conceptos necesarios para comprender de forma formal la rama de la ciberseguridad.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="ruta/a/tu/badge1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="enlace-verificacion-credly" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/1_IntroCiberseguridad_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="cert-7" class="cert-panel">
+                        <div class="cert-panel-header">
+                            <h3>Introducción a la Ciberseguridad</h3>
+                            <span class="cert-status">VALIDADO // STATUS: ACTIVO</span>
+                        </div>
+                        
+                        <div class="cert-panel-body">
+                            
+                            <div class="top-cards-grid">
+                                <div class="info-card">
+                                    <h4 class="card-heading">Reseña de la certificación</h4>
+                                    <p>
+                                        El marco ITU-T X.800 y el Glosario oficial RFC son marcos de vital importancia para la seguridad informática. El marco ITU-T X.800 es el comunicado emitido por la Unión Internacional de Telecomunicaciones (UIT), que tiene como propósito brindar un servicio de seguridad a través de seis definiciones clave para mantener a flote la triada de la seguridad informática: integridad, disponibilidad y confidencialidad, mientras que el RFC 4949 ofrece una amplia gama de conceptos necesarios para comprender de forma formal la rama de la ciberseguridad.
+                                    </p>
+                                </div>
+
+                                <div class="info-card text-center">
+                                    <h4 class="card-heading">Digital Badge</h4>
+                                    <div class="badge-container">
+                                        <img src="ruta/a/tu/badge1.png" alt="Badge Cisco">
+                                    </div>
+                                    <a href="enlace-verificacion-credly" target="_blank" class="badge-verify">Verificar Insignia ➔</a>
+                                </div>
+                            </div>
+
+                            <div class="info-card">
+                                <h4 class="card-heading">Evidencia del certificado</h4>
+                                <div class="pdf-viewer-container">
+                                    <iframe src="Certificaciones/1_IntroCiberseguridad_181801.pdf" title="Certificado Ciberseguridad"></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.cert-tab');
+                const panels = document.querySelectorAll('.cert-panel');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Quitar clase active de todos
+                        tabs.forEach(t => t.classList.remove('active'));
+                        panels.forEach(p => p.classList.remove('active'));
+
+                        // Poner clase active al presionado
+                        tab.classList.add('active');
+                        const targetId = tab.getAttribute('data-target');
+                        document.getElementById(targetId).classList.add('active');
+                    });
+                });
+            });
+        </script>
+    
+</body>
+</html>
