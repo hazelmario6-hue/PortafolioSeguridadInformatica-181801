@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto 3 - Seguridad Informática</title>
+    <meta name="description" content="Portafolio digital de Seguridad Informática">
+    <meta name="author" content="Hazel Mario Avalos Rangel">
+    <style>
+        /* =====================
+           ESTILOS DE DOCUMENTACIÓN SGSI (AISLADOS PARA EVITAR CHOQUES)
+        ===================== */
+        
+        /* Variables locales para asegurar que no falte ningún color */
+        .sgsi-documentation-section {
+            --primary-color: #00ff9c;
+            --border-color: #30363d;
+            --card-color: #161b22;
+            --muted-text: #8b949e;
+            --console-bg: #05080c;
+            --bg-color: #0d1117;
+        }
+
+        .sgsi-documentation-section .sgsi-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Menú lateral de navegación fija */
+        .sgsi-documentation-section .sgsi-nav-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: sticky;
+            top: 40px;
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .sgsi-documentation-section .sgsi-nav-link, 
+        .sgsi-documentation-section .sgsi-nav-link-pilar {
+            display: block;
+            padding: 12px 15px;
+            color: var(--muted-text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sgsi-documentation-section .sgsi-nav-link:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: #fff;
+            border-left-color: var(--border-color);
+        }
+
+        /* Enlaces resaltados */
+        .sgsi-documentation-section .sgsi-nav-link-pilar {
+            color: #ccc;
+            background: rgba(0, 255, 156, 0.02);
+        }
+
+        .sgsi-documentation-section .sgsi-nav-link-pilar:hover {
+            background: rgba(0, 255, 156, 0.05);
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+        }
+
+        /* Cuerpo principal */
+        .sgsi-documentation-section .sgsi-content-body {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sgsi-documentation-section .sgsi-section-card {
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+            scroll-margin-top: 40px; 
+        }
+
+        .sgsi-documentation-section .sgsi-section-card.pilar-highlight {
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.02), inset 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .sgsi-documentation-section .card-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary-color);
+            font-weight: bold;
+        }
+
+        .sgsi-documentation-section .technical-list {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+
+        .sgsi-documentation-section .technical-list li {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .sgsi-documentation-section .technical-list strong {
+            color: var(--primary-color);
+        }
+
+        .sgsi-documentation-section .technical-meta {
+            background: var(--console-bg);
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .sgsi-documentation-section .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .sgsi-documentation-section .glossary-grid div {
+            background: rgba(0,0,0,0.2);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #ccc;
+            border-top: 1px solid var(--border-color);
+            line-height: 1.4;
+        }
+
+        .sgsi-documentation-section .glossary-grid strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .sgsi-documentation-section .sub-card {
+            background: var(--console-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .sgsi-documentation-section .sub-card h5 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 5px;
+        }
+
+        /* Línea de tiempo forense */
+        .sgsi-documentation-section .incident-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+            margin-top: 20px;
+        }
+
+        .sgsi-documentation-section .timeline-step {
+            position: relative;
+        }
+
+        .sgsi-documentation-section .timeline-step::before {
+            content: "";
+            position: absolute;
+            left: -27px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-color);
+            border: 2px solid #ff4c4c;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff4c4c;
+        }
+
+        .sgsi-documentation-section .timeline-step:last-child::before {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px var(--primary-color);
+        }
+
+        .sgsi-documentation-section .timeline-step .time {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #ff4c4c;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .sgsi-documentation-section .timeline-step:last-child .time {
+            color: var(--primary-color);
+        }
+
+        .sgsi-documentation-section .timeline-step .desc {
+            color: #ccc;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* ESTILOS PARA LAS TABLAS DE ESTA SECCIÓN Y PDFS */
+        .sgsi-documentation-section .ranking-table-mock {
+            width: 100%;
+            border-collapse: collapse;
+            color: #e6edf3;
+            font-size: 0.85rem;
+        }
+
+        .sgsi-documentation-section .ranking-table-mock th {
+            text-align: left;
+            padding-bottom: 10px;
+            color: #8b949e;
+            border-bottom: 1px dashed #333;
+        }
+
+        .sgsi-documentation-section .ranking-table-mock td {
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        /* Contenedores de PDF aislados */
+        .sgsi-documentation-section .pdf-viewer-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #222;
+        }
+
+        .sgsi-documentation-section iframe {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+            background: transparent !important;
+        }
+
+        /* Responsivo básico */
+        @media (max-width: 900px) {
+            .sgsi-documentation-section .sgsi-container {
+                grid-template-columns: 1fr;
+            }
+            .sgsi-documentation-section .sgsi-nav-sidebar {
+                position: relative;
+                top: 0;
+                flex-direction: row;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="Proyectos.html" title="Proyectos">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="#" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contacto" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+
+                <a href="certificaciones.html" title="Certificaciones">
+                    <img src="Image/icons/certificaciones.png" alt="Certificaciones">
+                </a>
+                <div class="dropdown">
+                    <button class="dropbtn">ROAD TO HALL OF FAME <span>▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="sql-injection.html">SQL Injection</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="sgsi-documentation-section" style="margin-top: 60px;">
+            <div class="case-header">
+                <h2>IMPLEMENTACIÓN SGSI: <span>ISO/IEC 27001 - Robert Bosch EDI/4</span></h2>
+                <p style="color: var(--muted-text); margin-top: 5px; font-size: 0.95rem; line-height: 1.6;">
+                    Documentación técnica exhaustiva del Sistema de Gestión de Seguridad de la Información (SGSI) desarrollado bajo la estructura de alto nivel del Anexo SL. Este proyecto aborda la protección integral del ciclo de vida de desarrollo (SDLC) en entornos Low-Code.
+                </p>
+                <div style="margin-top: 15px;">
+                    <span style="color: #ccc;">ANEXO SL</span>
+                    <span style="color: #ccc;">ISO/IEC 27001:2022</span>
+                    <span style="color: #ccc;">OUTSYSTEMS AppSec</span>
+                    <span style="color: #ccc;">AUDITORÍA TI</span>
+                </div>
+            </div>
+
+            <div class="sgsi-container" style="margin-top: 30px;">
+                
+                <nav class="sgsi-nav-sidebar">
+                    <a href="#sec-1" class="sgsi-nav-link">1. Alcance y Filosofía</a>
+                    <a href="#sec-2" class="sgsi-nav-link">2. Referencias Normativas</a>
+                    <a href="#sec-3" class="sgsi-nav-link">3. Términos y Condiciones</a>
+                    <a href="#sec-4" class="sgsi-nav-link">4. Contexto de la Organización</a>
+                    <a href="#sec-5" class="sgsi-nav-link-pilar">5. Liderazgo (Políticas) ★</a>
+                    <a href="#sec-6" class="sgsi-nav-link-pilar">6. Planificación (Riesgos) ★</a>
+                    <a href="#sec-7" class="sgsi-nav-link">7. Soporte y Concientización</a>
+                    <a href="#sec-8" class="sgsi-nav-link">8. Operación Técnica</a>
+                    <a href="#sec-9" class="sgsi-nav-link-pilar">9. Evaluación (Auditoría) ★</a>
+                    <a href="#sec-10" class="sgsi-nav-link-pilar">10. Mejora e Incidente ★</a>
+                </nav>
+
+                <div class="sgsi-content-body">
+
+                    <div id="sec-1" class="sgsi-section-card">
+                        <h3 class="card-heading">1. Alcance, Contexto Organizacional y Filosofía Corporativa</h3>
+                        
+                        <p>
+                            El presente <strong>Sistema de Gestión de Seguridad de la Información (SGSI)</strong> delimita su perímetro de acción, de manera técnica y operativa, estrictamente al departamento <strong>Easy.Go</strong> perteneciente al área de <strong>Electronic Data Interchange (EDI/4)</strong> de Robert Bosch Sistemas Automotrices, S.A. de C.V., ubicado en Eje Central 245, Zona Industrial, San Luis Potosí, México.
+                        </p>
+
+                        <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="sub-card">
+                                <h4 style="color: var(--primary-color);">1.1. Misión y Visión Bosch</h4>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: #ccc;">
+                                    <strong>Misión:</strong> Ofrecer soluciones tecnológicas innovadoras ante los retos críticos de la humanidad, priorizando la preservación ambiental, la eficiencia energética y la seguridad humana en cada desarrollo.<br><br>
+                                    <strong>Visión (Estrategia "New Dimensions"):</strong> Consolidar una creación de valor sostenible mediante la credibilidad y la responsabilidad social. La visión institucional apuesta por la movilidad inteligente, conectada y, sobre todo, segura.
+                                </p>
+                            </div>
+                            <div class="sub-card">
+                                <h4 style="color: var(--primary-color);">1.2. Propósito Técnico del SGSI</h4>
+                                <p style="font-size: 0.85rem; line-height: 1.5; color: #ccc;">
+                                    El alcance de este proyecto no se limita a la administración documental; se enfoca en salvaguardar la <strong>Tríada CIA</strong> (Confidencialidad, Integridad y Disponibilidad) en todo el ciclo de vida de desarrollo de software (SDLC) ejecutado sobre la plataforma <strong>OutSystems</strong>. Buscamos blindar el flujo de datos EDI frente a amenazas persistentes, garantizando la resiliencia operativa del área ante incidentes de ciberseguridad.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px; background: rgba(0, 0, 0, 0.2); padding: 15px; border-left: 3px solid var(--primary-color);">
+                            <h4 style="color: #fff; margin-bottom: 10px;">Vectores de Mitigación en el Alcance</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.6;">
+                                Este SGSI implementa controles específicos para mitigar riesgos críticos identificados en el ecosistema Bosch:
+                            </p>
+                            <ul style="font-size: 0.85rem; color: #aaa; list-style-type: square; padding-left: 20px;">
+                                <li><strong>Escalamiento de Privilegios:</strong> Fortalecimiento de accesos en el Service Center y consolas de gestión de OutSystems.</li>
+                                <li><strong>Fuga de Información:</strong> Protección de datos confidenciales durante la transmisión de documentos electrónicos (EDI) entre socios comerciales.</li>
+                                <li><strong>Vulnerabilidades en SDLC:</strong> Integración de seguridad en el pipeline de despliegue continuo (CI/CD) para detectar código inseguro antes de su paso a producción.</li>
+                                <li><strong>Gestión de Identidades:</strong> Centralización y auditoría de accesos lógicos para prevenir la permanencia de cuentas huérfanas tras cambios de personal.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="sec-2" class="sgsi-section-card">
+                        <h3 class="card-heading">2. Referencias Normativas</h3>
+                        <p>El marco de control diseñado para EDI/4 se fundamenta en un ecosistema robusto de estándares para cubrir tanto la gestión como el desarrollo de software:</p>
+                        <ul class="technical-list">
+                            <li><strong>ISO/IEC 27000:</strong> Proporciona los principios, conceptos y definiciones fundamentales para la implementación.</li>
+                            <li><strong>ISO/IEC 27001:2022:</strong> Norma central que especifica los requisitos obligatorios para establecer, implementar, mantener y mejorar continuamente el SGSI, proporcionando el marco contra el cual se evalúa la conformidad.</li>
+                            <li><strong>ISO/IEC 27002:2022:</strong> Guía de referencia esencial para la parametrización de los controles de seguridad de la información, control de accesos y gestión de identidades.</li>
+                            <li><strong>ISO/IEC 27034 (Seguridad de Aplicaciones):</strong> Fundamental para el departamento Easy.Go; integra la seguridad en todas las fases del SDLC de OutSystems, asegurando que las aplicaciones sean seguras por diseño (Security by Design).</li>
+                            <li><strong>ISO/IEC 27005:</strong> Metodología de identificación, análisis y tratamiento del riesgo informático.</li>
+                            <li><strong>ISO/IEC 27031:</strong> Directrices para la preparación de las TIC garantizando la continuidad del negocio y resiliencia de la infraestructura.</li>
+                        </ul>
+                    </div>
+
+                    <div id="sec-3" class="sgsi-section-card">
+                        <h3 class="card-heading">3. Términos, Condiciones y Conceptos Clave</h3>
+                        <p>Definiciones normativas clave parametrizadas para el flujo de trabajo en Bosch:</p>
+                        <div class="glossary-grid">
+                            <div><strong>Tríada de Seguridad:</strong> <em>Confidencialidad</em> (solo entes autorizados acceden), <em>Integridad</em> (completitud de los datos y código), y <em>Disponibilidad</em> (acceso usable a las apps de Easy.Go).</div>
+                            <div><strong>Activo de Información:</strong> Cualquier conocimiento o dato de valor para EDI/4, incluyendo código fuente en OutSystems, bases de datos, documentación y credenciales.</div>
+                            <div><strong>Riesgo de Seguridad:</strong> El efecto de la incertidumbre sobre los objetivos de seguridad, medido por la probabilidad de que una amenaza explote una vulnerabilidad.</div>
+                            <div><strong>SoA (Declaración de Aplicabilidad):</strong> Documento que detalla los controles de la norma ISO 27001 seleccionados para el alcance de EDI/4, justificando su inclusión o exclusión.</div>
+                            <div><strong>OutSystems (Low-Code):</strong> Plataforma de desarrollo de aplicaciones de alta productividad que constituye el entorno tecnológico principal.</div>
+                        </div>
+                    </div>
+
+                    <div id="sec-4" class="sgsi-section-card">
+                        <h3 class="card-heading">4. Contexto de la Organización (Inventario Analítico)</h3>
+                        <p>Para asegurar el perímetro completo, se consolidó un inventario exhaustivo y catalogado de 40 activos críticos (20 internos y 20 externos) evaluados para el análisis de riesgo:</p>
+                        <div class="top-cards-grid" style="grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                            <div class="sub-card">
+                                <h5>Activos Internos Clave (Infraestructura Propia)</h5>
+                                <ul style="padding-left: 15px; font-size: 0.85rem; color: #ccc;">
+                                    <li>Laptops del personal EDI y teléfonos móviles full-time.</li>
+                                    <li>Gestor de base de datos híbridas y su información contenida.</li>
+                                    <li>Plataforma de desarrollo y apps creadas en OutSystems.</li>
+                                    <li>Plataformas de control de versiones y repositorios.</li>
+                                    <li>Equipos de red: Router Cisco, Switches Cisco, Firewall Cisco, Access Points y VPN Cisco.</li>
+                                    <li>Sistemas de videovigilancia y controles de acceso al departamento.</li>
+                                </ul>
+                            </div>
+                            <div class="sub-card">
+                                <h5>Activos Externos Críticos (Terceros y Cloud)</h5>
+                                <ul style="padding-left: 15px; font-size: 0.85rem; color: #ccc;">
+                                    <li>Proveedores de nube (SaaS, IaaS, PaaS) y Redes de Valor Añadido (VAN) para EDI.</li>
+                                    <li>APIs, Webhooks y Redes de socios de negocio (B2B / VPNs Site-to-Site).</li>
+                                    <li>Servicios de Seguridad Administrada (SOC externo) e ISPs.</li>
+                                    <li>Bibliotecas Open Source y repositorios de código externos.</li>
+                                    <li>Proveedores de Identidad (IdP / SSO en la nube) y CDNs de mitigación DDoS.</li>
+                                    <li>Fuentes de Inteligencia de Amenazas (Threat Intelligence Feeds).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sec-5" class="sgsi-section-card pilar-highlight">
+                        <h3 class="card-heading" style="color: var(--primary-color);">5. Liderazgo: Políticas Generales y Líneas Base de Configuración</h3>
+                        <p style="margin-bottom: 15px;">La alta dirección aprobó políticas estrictas para garantizar la protección corporativa en todos sus estados, respaldadas por una Matriz RACI. A continuación, la extracción de los controles técnicos mandatarios implementados:</p>
+                        
+                        <table class="ranking-table-mock" style="font-size: 0.8rem; line-height: 1.4;">
+                            <thead>
+                                <tr><th style="color: #0d1117;">ACTIVO CRÍTICO</th><th style="color: #0d1117;">POLÍTICA / ESTÁNDAR APLICADO</th><th style="color: #0d1117;">PROCEDIMIENTO Y LÍNEA BASE (BASELINE)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Bases de Datos</strong></td>
+                                    <td>Información clasificada como "Confidencial" cifrada en todo estado.</td>
+                                    <td>El cifrado mínimo aceptable por defecto para datos en reposo es <strong>AES-256</strong>. Procedimiento: Evaluar impacto, etiquetar, cifrar.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Gestor DBMS</strong></td>
+                                    <td>Acceso lógico estrictamente controlado, autenticado y auditado.</td>
+                                    <td>Uso obligatorio de <strong>MFA</strong>. Línea base: Puertos de acceso público deshabilitados y logs de auditoría transaccional encendidos.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Sistemas en la Nube</strong></td>
+                                    <td>Protección contra exposición pública y accesos no autorizados.</td>
+                                    <td>Ejecución de plantillas de Infraestructura como Código (IaC). Línea base: IAM con "Bloquear todo el acceso público" a nivel cuenta.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Respaldos (Backups)</strong></td>
+                                    <td>Asegurar disponibilidad ante ransomware o fallas críticas.</td>
+                                    <td>Estricto cumplimiento de la <strong>Regla 3-2-1</strong>. Línea base: Retención de 30 días con propiedad de inmutabilidad activada.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Laptops (Endpoints)</strong></td>
+                                    <td>Protección perimetral contra robo físico y software malicioso.</td>
+                                    <td>Discos cifrados y solución <strong>EDR (Endpoint Detection and Response)</strong> instalada. Bloqueo de sesión tras 5 minutos de inactividad.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Control Versiones (Git)</strong></td>
+                                    <td>Integración de seguridad en el ciclo SDLC.</td>
+                                    <td>Cero commits directos a Main. Requiere <strong>Pull Request</strong> y aprobación de un par. Rechazo automático de extensiones críticas (.pem, .key).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. VPN Cisco</strong></td>
+                                    <td>Comunicaciones remotas exclusivamente por canales cifrados.</td>
+                                    <td>Bloqueo del <strong>túnel dividido (Split Tunneling)</strong>, forzando todo el tráfico de internet a pasar por el firewall corporativo.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Redes B2B (VAN)</strong></td>
+                                    <td>Aislamiento para prevenir movimientos laterales desde socios vulnerados.</td>
+                                    <td>Terminación en zona desmilitarizada (DMZ). Cifrado VPN IPsec con AES-256 y grupos Diffie-Hellman 14 o superior.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>9. Control Versiones (Git)</strong></td>
+                                    <td>El ciclo SDLC debe integrar controles de seguridad para proteger el código fuente.</td>
+                                    <td>Cero commits directos a producción (Pull Request obligatorio). Rechazo automático de subida de extensiones críticas (<strong>.pem, .env</strong>).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>10. VPN Cisco</strong></td>
+                                    <td>Comunicaciones remotas a la infraestructura interna exclusivamente a través de canales cifrados.</td>
+                                    <td>Bloqueo del <strong>túnel dividido (Split Tunneling)</strong> por defecto, forzando todo el tráfico hacia el firewall corporativo.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="sec-6" class="sgsi-section-card pilar-highlight">
+                        <h3 class="card-heading" style="color: var(--primary-color);">6. Planificación: Matriz de Análisis y Tratamiento de Riesgos</h3>
+                        <p style="margin-bottom: 15px;">Evaluación cuantitativa basada en la probabilidad (01-Raro a 05-Casi Seguro) e impacto (01-Insignificante a 05-Severo). Se extraen los vectores más críticos identificados para el entorno de desarrollo ágil:</p>
+                        
+                        <table class="ranking-table-mock" style="font-size: 0.8rem; line-height: 1.4;">
+                            <thead>
+                                <tr><th style="color: #0d1117;">ID</th><th style="color: #0d1117;">RIESGO O AMENAZA IDENTIFICADA</th><th style="color: #0d1117;">PROB</th><th style="color: #0d1117;">IMP</th><th style="color: #0d1117;">SCORE</th><th style="color: #0d1117;">ACCIÓN CORRECTIVA ESTABLECIDA (TRATAMIENTO)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row" style="background: rgba(255, 76, 76, 0.1); color: #ff4c4c;">
+                                    <td><strong>INT-1</strong></td>
+                                    <td>Bases de Datos / Fuga o robo de información confidencial en texto plano.</td>
+                                    <td>04</td>
+                                    <td>05</td>
+                                    <td>20 (Extremo)</td>
+                                    <td>Mitigar: Clasificación de datos y cifrado AES-256 en todo estado.</td>
+                                </tr>
+                                <tr class="highlight-row" style="background: rgba(255, 76, 76, 0.1); color: #ff4c4c;">
+                                    <td><strong>INT-4</strong></td>
+                                    <td>Almacenamiento Nube / Exposición accidental de datos a internet público.</td>
+                                    <td>04</td>
+                                    <td>05</td>
+                                    <td>20 (Extremo)</td>
+                                    <td>Mitigar: Bloqueo de acceso público por defecto y despliegue por IaC.</td>
+                                </tr>
+                                <tr class="highlight-row" style="background: rgba(255, 76, 76, 0.1); color: #ff4c4c;">
+                                    <td><strong>INT-5</strong></td>
+                                    <td>Respaldos / Pérdida irrecuperable por ataque de Ransomware o desastre.</td>
+                                    <td>04</td>
+                                    <td>05</td>
+                                    <td>20 (Extremo)</td>
+                                    <td>Mitigar: Implementación estricta de la regla 3-2-1 e inmutabilidad.</td>
+                                </tr>
+                                <tr class="highlight-row" style="background: rgba(255, 76, 76, 0.1); color: #ff4c4c;">
+                                    <td><strong>EXT-8</strong></td>
+                                    <td>Dependencias / Explotación de vulnerabilidades heredadas (ataques de cadena de suministro).</td>
+                                    <td>04</td>
+                                    <td>05</td>
+                                    <td>20 (Extremo)</td>
+                                    <td>Mitigar: Análisis SCA automático y bloqueo en pipeline si CVSS > 7.0.</td>
+                                </tr>
+                                <tr style="color: #ffbd2e;">
+                                    <td><strong>INT-6</strong></td>
+                                    <td>USB Físicas / Infección por malware e infiltración/exfiltración de datos.</td>
+                                    <td>04</td>
+                                    <td>04</td>
+                                    <td>16 (Muy Alto)</td>
+                                    <td>Mitigar: Políticas GPO de solo lectura y uso de USBs cifradas exclusivas.</td>
+                                </tr>
+                                <tr style="color: #ffbd2e;">
+                                    <td><strong>EXT-3</strong></td>
+                                    <td>APIs y Webhooks / Abuso de consumo, ataques de denegación de servicio (DDoS).</td>
+                                    <td>04</td>
+                                    <td>04</td>
+                                    <td>16 (Muy Alto)</td>
+                                    <td>Mitigar: Implementación de Rate Limiting y bóveda de secretos (Vault).</td>
+                                </tr>
+                                <tr style="color: #ffbd2e;">
+                                    <td><strong>EXT-4</strong></td>
+                                    <td>Redes B2B / Movimiento lateral hacia la red interna desde un socio vulnerado.</td>
+                                    <td>03</td>
+                                    <td>05</td>
+                                    <td>15 (Muy Alto)</td>
+                                    <td>Mitigar: Túneles finalizados en DMZ, configuración de ACLs y filtrado IPsec.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="sec-7" class="sgsi-section-card">
+                        <h3 class="card-heading">7. Soporte y Concientización de Personal</h3>
+                        <p>
+                            El SGSI reconoce al factor humano como el principal vector de vulnerabilidad. Se documenta la ejecución de la <strong>Minuta de Concientización en Seguridad de la Información</strong> celebrada el 15 de mayo de 2026 a las 10:00 AM mediante Microsoft Teams. 
+                        </p>
+                        <ul style="padding-left: 20px; font-size: 0.9rem; color: #ccc; margin-top: 10px;">
+                            <li><strong>Participantes:</strong> Project Managers, Team Leads, Developers, Testers y Contratistas de EDI/4.</li>
+                            <li><strong>Temas Tratados:</strong> Introducción al SGSI, Políticas implementadas (VPN, Manejo de contraseñas, MFA), Phishing, Robo de credenciales y buenas prácticas operativas.</li>
+                            <li><strong>Acuerdos Formalizados:</strong> Capacitación anual de phishing por parte de TI, revisión trimestral de accesos lógicos por Team Leads, y simulacros de incidentes.</li>
+                        </ul>
+
+                        <div class="info-card text-center" style="margin-top: 25px; padding: 15px; border-color: var(--primary-color);">
+                            <h4 style="margin-bottom: 10px; font-size: 1.1rem; color: #fff; font-family: 'Courier New', monospace;">>_ Módulo de Concientización Operativa (Slides)</h4>
+                            <div class="pdf-viewer-container" style="height: 450px;">
+                                <iframe src="pdf/Concientización en Seguridad Bosch (1).pdf" title="Slides Concientización"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="sec-8" class="sgsi-section-card">
+                        <h3 class="card-heading">8. Operación y Planificación Operacional</h3>
+                        <p>
+                            Garantiza la supervisión, control de cambios y validación técnica de los procesos del departamento EDI/4. Esta sección documenta la operación técnica en sitio requerida para dar cumplimiento a la <strong>Política Interna 8: Teléfonos móviles del personal full-time</strong>, la cual establece: <em>"Los dispositivos móviles que procesen o accedan a datos del departamento EDI deben ser gestionados de manera segura"</em>.
+                        </p>
+                        <ul style="padding-left: 20px; font-size: 0.9rem; color: #ccc; margin-top: 10px;">
+                            <li><strong>Mitigación Operativa:</strong> Si se hace un mal uso del dispositivo, se podría lograr una escalada de privilegios hacia la red de la empresa; por ello, la política del MDM fuerza un PIN de 6 dígitos o autenticación biométrica.</li>
+                            <li><strong>Control de cambios:</strong> Cualquier modificación en la infraestructura o plataforma OutSystems es gestionada evaluando el impacto de seguridad previo a la implementación.</li>
+                        </ul>
+
+                        <div class="sub-card" style="margin-top: 20px;">
+                            <h5>Procedimiento Técnico Documentado: Configuración Biométrica (FaceID & Passcode)</h5>
+                            <p style="font-size: 0.85rem; color: #aaa;">Como evidencia empírica de implementación operativa, se configuraron los controles de acceso en los dispositivos institucionales del personal full-time:</p>
+                            <ol style="padding-left: 20px; font-size: 0.85rem; color: #ccc; margin-top: 5px;">
+                                <li>Ingreso a la aplicación de configuración (Settings) en el dispositivo móvil.</li>
+                                <li>Seleccionar la opción <strong>Face ID & Passcode</strong> y activar la biometría (Face ID / Touch ID) para garantizar que solo el titular autorizado desbloquee el equipo.</li>
+                                <li>Seleccionar la opción de agregar un nuevo passcode e ingresar un código seguro de 6 dígitos alineado a las directrices de la política.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div id="sec-9" class="sgsi-section-card pilar-highlight">
+                        <h3 class="card-heading" style="color: var(--primary-color);">9. Evaluación: Hallazgos de la Auditoría Interna</h3>
+                        <p style="margin-bottom: 15px;">Resultados formales del checklist de auditoría interna ejecutada el 13 de mayo de 2026. Se evaluaron 20 controles clave de la norma ISO/IEC 27001 mediante revisión de evidencias documentales y técnicas (plataformas GLPI, Microsoft Entra ID y CrowdStrike):</p>
+                        
+                        <div class="audit-summary-boxes" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; text-align: center; margin-bottom: 20px;">
+                            <div style="background: var(--console-bg); padding: 15px; border-radius: 6px; border: 1px solid var(--border-color);">
+                                <h2 style="color: #fff;">20</h2><span style="font-size: 0.75rem; color: var(--muted-text);">CONTROLES AUDITADOS</span>
+                            </div>
+                            <div style="background: var(--console-bg); padding: 15px; border-radius: 6px; border: 1px solid var(--primary-color);">
+                                <h2 style="color: var(--primary-color);">14</h2><span style="font-size: 0.75rem; color: var(--muted-text);">CUMPLEN (CONFORME)</span>
+                            </div>
+                            <div style="background: var(--console-bg); padding: 15px; border-radius: 6px; border: 1px solid #ffbd2e;">
+                                <h2 style="color: #ffbd2e;">2</h2><span style="font-size: 0.75rem; color: var(--muted-text);">CUMPLIMIENTO PARCIAL</span>
+                            </div>
+                            <div style="background: var(--console-bg); padding: 15px; border-radius: 6px; border: 1px solid #ff4c4c;">
+                                <h2 style="color: #ff4c4c;">4</h2><span style="font-size: 0.75rem; color: var(--muted-text);">NO CUMPLEN (HALLAZGOS)</span>
+                            </div>
+                        </div>
+
+                        <h5 style="margin-bottom: 10px; color: #fff;">Detalle de Hallazgos y No Conformidades Identificadas:</h5>
+                        <ul class="qr-highlights" style="background: transparent; border-left: none; padding: 0; font-size: 0.85rem; line-height: 1.5;">
+                            <li><strong style="color: #ff4c4c;">[No Cumple] C2 - Revisión de Políticas:</strong> La política de teletrabajo carece de actualización documental desde hace 18 meses, requiriendo revisión por RRHH y TI.</li>
+                            <li><strong style="color: #ff4c4c;">[No Cumple] C6 - Clasificación de la Información:</strong> Se detectaron reportes financieros alojados en servidores compartidos sin la etiqueta obligatoria de protección "Confidencial".</li>
+                            <li><strong style="color: #ff4c4c;">[No Cumple] C10 - Gestión de Altas y Bajas:</strong> Brecha crítica detectada en Microsoft Entra ID: 2 cuentas de ex-empleados permanecieron activas por más de 72 horas posteriores a su salida de la empresa.</li>
+                            <li><strong style="color: #ff4c4c;">[No Cumple] C14 - Pruebas de Restauración (Disaster Recovery):</strong> Ausencia total de evidencia documentada sobre simulacros de restauración de la base de datos principal en el último año.</li>
+                            <li><strong style="color: #ffbd2e;">[Parcial] C4 - Security by Design:</strong> 2 de 5 proyectos nuevos de desarrollo en EDI/4 omitieron la fase mandatoria de evaluación de riesgos inicial.</li>
+                            <li><strong style="color: #ffbd2e;">[Parcial] C20 - Concientización y Phishing:</strong> Aunque se realizaron capacitaciones, la campaña práctica de simulacro de phishing presenta más de un año de atraso operativo.</li>
+                        </ul>
+                    </div>
+
+                    <div id="sec-10" class="sgsi-section-card pilar-highlight">
+                        <h3 class="card-heading" style="color: var(--primary-color);">10. Mejora Continua: Análisis Forense de Incidente Crítico (Real)</h3>
+                        <p>
+                            Demostración de resiliencia del SGSI y efectividad del CSIRT ante la materialización de un riesgo. Un colaborador del equipo EDI/4 sufrió el robo físico de su equipo portátil corporativo mientras laboraba remotamente en una cafetería pública. El incidente fue clasificado como crítico ya que la sesión de Windows se encontraba activa, neutralizando temporalmente el cifrado AES-256.
+                        </p>
+
+                        <h5 style="margin-top: 20px; margin-bottom: 10px; color: #fff;">Línea Temporal de Respuesta a Incidentes (Cronología Forense):</h5>
+                        <div class="incident-timeline">
+                            <div class="timeline-step">
+                                <div class="time">09:15 AM</div>
+                                <div class="desc"><strong>Inicio de Sesión Remota:</strong> El usuario llega a la cafetería. El EDR reporta conexión estable y el disco se encuentra cifrado mediante BitLocker.</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="time">10:42 AM</div>
+                                <div class="desc"><strong>Abandono de Estación:</strong> El usuario recibe una llamada y abandona la mesa. Inicia el contador de 5 minutos de la línea base operativa para el bloqueo automático.</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="time">10:44 AM</div>
+                                <div class="desc"><strong>Exfiltración Física:</strong> Un individuo ajeno sustrae el equipo. El sistema operativo permanece activo y vulnerable (apenas minuto 2 de inactividad).</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="time">10:48 AM</div>
+                                <div class="desc"><strong>Descubrimiento:</strong> El usuario regresa a la mesa y se percata del robo.</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="time">11:15 AM</div>
+                                <div class="desc"><strong>Notificación Oficial:</strong> Usuario alerta a la Mesa de Ayuda de TI. Se cumple con éxito el SLA del procedimiento de respuesta (notificación obligatoria en menos de 1 hora).</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="time">11:22 AM</div>
+                                <div class="desc"><strong>Aislamiento de Seguridad:</strong> El equipo de TI localiza el dispositivo conectado a una red móvil vía consola MDM/EDR y lanza comando forzado de bloqueo de pantalla y borrado remoto de nivel militar (Wipe).</div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="time">11:25 AM</div>
+                                <div class="desc"><strong>Contención Exitosa:</strong> Consola confirma la ejecución del Wipe. Se destruyen los datos y entra en rigor total la protección criptográfica. <strong>Impacto final de fuga de información: 0%</strong>.</div>
+                            </div>
+                        </div>
+
+                        <div class="technical-meta" style="margin-top: 20px; border-top: 1px dashed var(--border-color); padding-top: 15px; margin-bottom: 30px;">
+                            <strong>Análisis de Causa Raíz y Acción Correctiva:</strong><br><br>
+                            Los controles técnicos reactivos (EDR, borrado remoto) funcionaron perfectamente. Sin embargo, la causa raíz evidenció negligencia en seguridad física y una tolerancia excesiva en la línea base. Como medida de <strong>Mejora Continua</strong>, se actualizó la línea base (Baseline 3.0), reduciendo el bloqueo automático por inactividad de 5 a un límite estricto de <strong>3 minutos</strong> en todos los endpoints.
+                        </div>
+
+                        <div class="top-cards-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div class="info-card text-center" style="padding: 15px; border-color: var(--primary-color);">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1rem; color: #fff; font-family: 'Courier New', monospace;">>_ Gestión y Respuesta a Incidentes</h4>
+                                <div class="pdf-viewer-container" style="height: 400px;">
+                                    <iframe src="pdf/Sección 10 - Mejora y Gestión de Incidentes.pdf" title="Slides Incidentes"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="info-card text-center" style="padding: 15px; border-color: var(--primary-color);">
+                                <h4 style="margin-bottom: 10px; font-size: 1.1rem; color: #fff; font-family: 'Courier New', monospace;">>_ Infografía: Prevención</h4>
+                                <div class="pdf-viewer-container" style="height: 400px;">
+                                    <iframe src="pdf/Flyer_Tactico_Horizontal_Bosch_V2.pdf" title="Banner de Supervivencia Digital"></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="actividad-seccion">
+                <h2>Referencias Bibliográficas</h2>
+                <ul>
+                    <li>RocketReach. (s.f.). Bosch México Marketing Department | Bosch México Marketing 
+                        Team. Recuperado el 22 de abril de 2026, de https://rocketreach.co/bosch
+                        mexico-marketing-department_b5e1056bf42e6a1a </li>
+                    <li>The Official Board. (2026, 17 de marzo). Bosch Org Chart + Executive Team. 
+                        Recuperado el 22 de abril de 2026, de https://www.theofficialboard.com/org
+                        chart/bosch-1 </li>
+                    <li>The Official Board. (s.f.). Organigrama de Bosch North America. Recuperado el 22 
+                        de abril de 2026, de https://www.theofficialboard.es/organigrama/bosch
+                        north-america </li>
+                </ul>
+            </div>
+
+            <div class="actividad-seccion descarga">
+                <h2>Documento en PDF</h2>
+                <a href="pdf/PR03-Equipo02.pdf" class="btn-pdf" download>
+                    📄 Exportar a PDF
+                </a>
+            </div>
+
+        </section>
+</body>
+</html>
