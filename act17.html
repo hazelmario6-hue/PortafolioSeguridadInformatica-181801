@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 17 - Evaluación CVSS v3.1</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           ESTILOS ESPECÍFICOS DE LA ACTIVIDAD
+        ========================================= */
+        .actividad-container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Cabecera de la Actividad */
+        .header-section {
+            background: var(--card-color, #161b22);
+            border: 1px solid var(--border-color, #30363d);
+            border-left: 4px solid var(--primary-color, #00ff9c);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-section h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Caja de Metadatos */
+        .box-metadata {
+            background: var(--console-bg, #05080c);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-family: 'Courier New', monospace;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .box-metadata ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .box-metadata li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .box-metadata i {
+            color: var(--primary-color, #00ff9c);
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Títulos de sección */
+        .rubrica-titulo {
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color, #30363d);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rubrica-tag {
+            background: rgba(0, 255, 156, 0.1);
+            color: var(--primary-color, #00ff9c);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            border: 1px solid var(--primary-color, #00ff9c);
+        }
+
+        /* Textos y Párrafos */
+        .scroll-element p {
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+
+        .scroll-element strong {
+            color: #fff;
+        }
+
+        .scroll-element h3 {
+            color: var(--primary-color, #00ff9c);
+            margin: 30px 0 15px 0;
+            font-size: 1.15rem;
+        }
+
+        /* Cajas para las métricas CVSS */
+        .cvss-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--border-color, #30363d);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s;
+        }
+
+        .cvss-item:hover {
+            background: rgba(0, 255, 156, 0.05);
+            border-left-color: var(--primary-color, #00ff9c);
+        }
+
+        .cvss-item h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cvss-item p {
+            margin-bottom: 0 !important;
+            font-size: 0.9rem !important;
+            color: #bbb !important;
+        }
+
+        /* Etiqueta final del Vector */
+        .vector-cvss {
+            background: #05080c;
+            border: 1px solid var(--primary-color, #00ff9c);
+            color: var(--primary-color, #00ff9c);
+            padding: 15px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            margin: 25px 0;
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.2);
+            letter-spacing: 1px;
+        }
+
+        /* Imágenes y Videos */
+        .espacio-imagen {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .espacio-imagen img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color, #30363d);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--border-color, #30363d);
+            margin: 20px 0;
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pie-imagen {
+            text-align: center;
+            font-style: italic;
+            color: #888 !important;
+            font-size: 0.85rem !important;
+            margin-top: -10px !important;
+        }
+
+        /* Referencias */
+        .sangria-francesa {
+            padding-left: 30px;
+            text-indent: -30px;
+            margin-bottom: 15px !important;
+            color: #8b949e !important;
+            word-break: break-word;
+        }
+
+        .sangria-francesa a {
+            color: var(--primary-color, #00ff9c);
+            text-decoration: none;
+        }
+
+        .sangria-francesa a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botón PDF */
+        .btn-exportar {
+            background: #111;
+            border: 1px solid var(--primary-color, #00ff9c);
+            color: var(--primary-color, #00ff9c);
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s;
+            margin: 20px 0 10px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .btn-exportar:hover {
+            background: var(--primary-color, #00ff9c);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="Proyectos.html" title="Proyectos">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contacto" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+                <a href="#" title="Certificaciones">
+                    <img src="Image/icons/certificaciones.png" alt="Certificaciones">
+                </a>
+
+                <div class="dropdown">
+                    <button class="dropbtn">ROAD TO HALL OF FAME <span>▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="sql-injection.html">SQL Injection</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="actividad-container">
+
+        <div class="header-section scroll-element">
+            <h1>EVALUACIÓN DE VULNERABILIDADES CON CVSS V3.1</h1>
+            <p style="color: var(--primary-color); font-family: 'Courier New', monospace; margin-top: 0; font-weight: bold;">Actividad 17 | Equipo 02</p>
+            
+            <div class="box-metadata">
+                <h4 style="margin-top:0; margin-bottom: 15px; color:#fff;">>_ DATOS DE LA ACTIVIDAD:</h4>
+                <ul>
+                    <li><i class="fas fa-users"></i> <strong>Equipo 02 Integrantes:</strong><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Hazel Mario Ávalos Rangel<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Jorge Alejandro Cabrera Meza<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Ángel Josué González Delgado<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Diego López Castro<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Jorge Emmanuel López Monsiváis
+                    </li>
+                    <li><i class="fas fa-chalkboard-teacher"></i> <strong>Profesor:</strong> Servando López Contreras</li>
+                    <li><i class="fas fa-calendar-alt"></i> <strong>Fecha de entrega:</strong> 15-Mayo-2026</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">01</span> Introducción</h2>
+            <div class="scroll-element">
+                <p>La evaluación de vulnerabilidades es una actividad esencial dentro de la gestión de riesgos, ya que permite traducir hallazgos técnicos en criterios claros de prioridad para la toma de decisiones. En ese proceso, el Common Vulnerability Scoring System versión 3.1 (CVSS v3.1) funciona como un marco estandarizado para describir la severidad de una vulnerabilidad mediante métricas comparables entre distintos productos, entornos y organizaciones. Su principal valor consiste en ofrecer una puntuación base reproducible y una representación compacta en forma de vector.</p>
+                <p>A diferencia de una valoración meramente intuitiva, CVSS v3.1 separa las características intrínsecas de la vulnerabilidad en tres grupos de métricas: Base, Temporal y Ambiental. Para esta actividad se trabaja principalmente con el grupo Base, porque el escenario proporciona la información necesaria para construir el vector y obtener la puntuación inicial. A partir de esa puntuación es posible interpretar la gravedad del caso, ubicarlo en una categoría cualitativa y justificar qué tan urgente debe ser su mitigación dentro de una organización.</p>
+            </div>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">02</span> Marco Teórico</h2>
+            <div class="scroll-element">
+                <h3>2.1 CVSS v3.1 como marco de evaluación</h3>
+                <p>CVSS es un marco abierto para comunicar las características y la severidad de vulnerabilidades de software, hardware y firmware. De acuerdo con la especificación oficial, su diseño se basa en tres grupos de métricas: Base, Temporal y Ambiental. El grupo Base refleja las cualidades intrínsecas de la vulnerabilidad y permanece constante en el tiempo y entre distintos entornos; el grupo Temporal ajusta la severidad conforme cambian factores como la disponibilidad de código de explotación; y el grupo Ambiental adapta la valoración al contexto específico de una organización.</p>
+                <p>La utilidad de CVSS no se limita a generar una cifra. También permite representar la evaluación mediante una cadena vector, que resume en formato compacto los valores asignados a cada métrica. Este enfoque facilita la comunicación técnica, la comparación entre vulnerabilidades y la priorización de acciones correctivas, especialmente cuando varias debilidades compiten por atención.</p>
+
+                <h3>2.2 Métricas base utilizadas en la actividad</h3>
+                <p><strong>Attack Vector (AV):</strong> AV:N indica que la vulnerabilidad puede explotarse a través de la red, sin requerir acceso físico al equipo vulnerable.</p>
+                <p><strong>Attack Complexity (AC):</strong> AC:L significa que la explotación no exige condiciones especiales o pasos excepcionales; el ataque es relativamente sencillo de ejecutar.</p>
+                <p><strong>Privileges Required (PR):</strong> PR:H indica que el atacante necesita privilegios elevados antes de explotar la vulnerabilidad, lo que reduce la facilidad del ataque.</p>
+                <p><strong>User Interaction (UI):</strong> UI:N señala que no se requiere interacción del usuario para que la explotación tenga éxito.</p>
+                <p><strong>Scope (S):</strong> S:U indica que el impacto permanece dentro del mismo ámbito de seguridad del componente vulnerable, sin cruzar a una autoridad de seguridad distinta.</p>
+                <p><strong>Confidentiality, Integrity and Availability (C/I/A):</strong> C:L, I:L y A:L representan impactos bajos sobre confidencialidad, integridad y disponibilidad, respectivamente.</p>
+
+                <h3>2.3 Vector y escala cualitativa</h3>
+                <p>La combinación de las métricas base produce una cadena vector, que en este caso queda expresada como CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L. La especificación oficial establece que la puntuación base oscila entre 0 y 10, y que puede traducirse a una escala cualitativa: Low (0.1 - 3.9), Medium (4.0 - 6.9), High (7.0 - 8.9) y Critical (9.0 - 10.0). Esta clasificación es útil para priorizar la atención operativa, aunque siempre debe complementarse con el contexto organizacional.</p>
+            </div>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">03</span> Escenario de la Actividad</h2>
+            <div class="scroll-element">
+                <p>Una organización detecta una vulnerabilidad en un sistema web interno con las siguientes características:</p>
+                <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 6px; border-left: 3px solid var(--primary-color);">
+                    <ul style="color: #ccc; font-size: 0.95rem; margin-bottom: 0;">
+                        <li>1. Puede explotarse a través de la red.</li>
+                        <li>2. La explotación requiere baja complejidad.</li>
+                        <li>3. Se necesitan privilegios elevados.</li>
+                        <li>4. No requiere interacción del usuario.</li>
+                        <li>5. No cambia el alcance.</li>
+                        <li>6. El impacto en Confidencialidad, Integridad y Disponibilidad es Bajo.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">04</span> Construcción del Vector CVSS</h2>
+            <div class="scroll-element">
+                <p>Con base en las características del escenario y la justificación teórica, se construyó el siguiente vector evaluando cada métrica base:</p>
+
+                <div class="cvss-item">
+                    <h4><i class="fas fa-globe"></i> 01.1 Attack Vector (AV): Network (N)</h4>
+                    <p>La vulnerabilidad puede explotarse remotamente a través de la red, lo que significa que un atacante no necesita acceso físico ni estar en la red local adyacente para ejecutar el ataque.</p>
+                </div>
+
+                <div class="cvss-item">
+                    <h4><i class="fas fa-unlock"></i> 01.2 Attack Complexity (AC): Low (L)</h4>
+                    <p>La explotación no exige condiciones especiales o pasos excepcionales de preparación; el ataque es relativamente directo y sencillo de ejecutar.</p>
+                </div>
+
+                <div class="cvss-item">
+                    <h4><i class="fas fa-user-shield"></i> 01.3 Privileges Required (PR): High (H)</h4>
+                    <p>El atacante necesita privilegios elevados (nivel administrador o similar) antes de poder explotar la vulnerabilidad, lo que reduce la facilidad de ejecución para usuarios comunes.</p>
+                </div>
+
+                <div class="cvss-item">
+                    <h4><i class="fas fa-mouse-pointer"></i> 01.4 User Interaction (UI): None (N)</h4>
+                    <p>No se requiere interacción del usuario para que la explotación tenga éxito. El ataque se ejecuta de principio a fin sin que la víctima tenga que hacer clic o abrir archivos.</p>
+                </div>
+
+                <div class="cvss-item">
+                    <h4><i class="fas fa-compress-arrows-alt"></i> 01.5 Scope (S): Unchanged (U)</h4>
+                    <p>El impacto permanece estrictamente dentro del mismo ámbito de seguridad del componente vulnerable, sin cruzar a una autoridad de seguridad distinta (no afecta a otros sistemas).</p>
+                </div>
+
+                <div class="cvss-item">
+                    <h4><i class="fas fa-chart-pie"></i> 01.6 Impacto (C/I/A): Low (L)</h4>
+                    <p>Representan impactos bajos sobre confidencialidad (C:L), integridad (I:L) y disponibilidad (A:L). La explotación produce afectaciones limitadas sin comprometer completamente el sistema.</p>
+                </div>
+
+                <p style="margin-top: 25px;">La Cadena/vector construida en base a esta información y confirmada con la calculadora oficial es la siguiente:</p>
+                
+                <div class="vector-cvss">
+                    CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:L/I:L/A:L
+                </div>
+            </div>
+        </section>    
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">05</span> Interpretación Técnica y Puntuación</h2>
+            <div class="scroll-element">
+                <h3>> Análisis Forense del Vector</h3>
+                <p>A pesar de que la vulnerabilidad requiere privilegios elevados (PR:H), continúa siendo relevante porque puede explotarse remotamente a través de la red (AV:N) y con baja complejidad (AC:L), lo que significa que un atacante que ya haya obtenido acceso privilegiado mediante robo de credenciales, escalamiento previo o cuentas comprometidas podría explotarla fácilmente sin necesidad de interacción del usuario (UI:N).</p>
+                <p>Esto incrementa el riesgo dentro de entornos corporativos donde existen múltiples cuentas administrativas o donde un atacante ya logró una intrusión inicial. El tipo de atacante que podría explotarla corresponde principalmente a un actor con conocimientos técnicos intermedios o avanzados, como ciberdelincuentes organizados, insiders maliciosos o grupos APT que ya posean acceso privilegiado dentro de la infraestructura.</p>
+                <p>El hecho de que el alcance permanezca sin cambios (S:U) indica que la vulnerabilidad sólo afecta recursos dentro del mismo ámbito de seguridad comprometido y no permite expandir privilegios hacia otros dominios o sistemas externos. Finalmente, que el impacto en confidencialidad, integridad y disponibilidad sea bajo (C:L/I:L/A:L) significa que la explotación produce afectaciones limitadas: el atacante podría acceder parcialmente a información, modificar algunos datos o provocar pequeñas interrupciones del servicio, pero sin comprometer completamente el sistema ni generar daños críticos a la operación.</p>
+
+                <h3 style="border-top: 1px solid #333; padding-top: 20px; margin-top: 30px;">> Cálculo de Puntuación</h3>
+                <p><strong>A) ¿Cuál es la puntuación base?</strong><br>
+                La puntuación base, considerando la información proporcionada y verificada mediante la calculadora oficial CVSS v3.1 de la NVD/FIRST, arroja un score de <strong style="color: var(--primary-color);">4.7</strong>.</p>
+                
+                <div class="espacio-imagen">
+                    <img src="Image/Metricas.png" alt="Captura de Calculadora CVSS con Score 4.7">
+                    <p class="pie-imagen"><br>Figura 1: Representación en Calculadora CVSS Oficial (NIST/FIRST)</p>
+                </div>
+
+                <p><strong>B) ¿En qué categoría cae?</strong><br>
+                Considerando la métrica oficial:<br>
+                • Baja (0.1 - 3.9)<br>
+                • <strong style="color: #ffbd2e;">Media (4.0 – 6.9)</strong><br>
+                • Alta (7.0 – 8.9)<br>
+                • Crítica (9.0 - 10.0)</p>
+                <p>El vector CVSS calculado (4.7) se clasifica en la categoría de criticidad <strong style="color: #ffbd2e;">MEDIA</strong>.</p>
+            </div>
+        </section>    
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">06</span> Conclusión y Reflexión Técnica</h2>
+            <div class="scroll-element">
+                <p>El uso de CVSS v3.1 en este escenario permite transformar una descripción técnica de la vulnerabilidad en un criterio de severidad claro y comparable. La construcción del vector mostró que, aunque el impacto sobre confidencialidad, integridad y disponibilidad es bajo, la explotación remota y la ausencia de interacción del usuario representan condiciones que siguen justificando atención prioritaria. El requisito de privilegios elevados reduce el potencial de explotación, pero no elimina el riesgo.</p>
+                <p>La puntuación base obtenida, 4.7, ubica la vulnerabilidad en la categoría Media, por lo que su corrección no debería postergarse indefinidamente, especialmente si afecta un sistema web interno con valor operativo para la organización. En términos de gestión, este resultado demuestra que CVSS no sólo sirve para clasificar vulnerabilidades, sino también para sustentar decisiones de mitigación con un lenguaje técnico estandarizado. Para una priorización más precisa, la valoración base debe complementarse con métricas temporales y ambientales que reflejen las condiciones reales del entorno.</p>
+            </div>
+        </section>    
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">07</span> Evidencia Multimedia</h2>
+                <div class="scroll-element">
+                    <p>Material de apoyo referente al funcionamiento del cálculo de métricas en CVSS:</p>
+                    <div class="video-responsive">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Q6B2wjQdRxY?si=JCYPs6i5nM8aw1Pr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p class="pie-imagen">How to Calculate CVSS Score | Metrics Explained</p>
+                </div>
+        </section>        
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">08</span> Referencias Técnicas</h2>
+            <div class="scroll-element">
+                <p class="sangria-francesa">
+                    FIRST.Org, Inc. (2026). Common Vulnerability Scoring System version 3.1 Specification Document. 
+                    <a href="https://www.first.org/cvss/v3.1/specification-document" target="_blank">https://www.first.org/cvss/v3.1/specification-document</a>
+                </p>
+                <p class="sangria-francesa">
+                    NIST. (08 de abril de 2026). National Vulnerability Database (NVD). 
+                    <a href="https://www.nist.gov/programs-projects/national-vulnerability-database-nvd" target="_blank">https://www.nist.gov/programs-projects/national-vulnerability-database-nvd</a>
+                </p>
+                <p class="sangria-francesa">
+                    NIST. (2026). CVSS v3 Calculator. 
+                    <a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator" target="_blank">https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="actividad-seccion descarga">
+            <h2>Documento en PDF</h2>
+            <a href="pdf/act17-Equipo02.pdf" class="btn-pdf" download>
+                📄 Exportar a PDF
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+    </footer>
+</body>
+</html>

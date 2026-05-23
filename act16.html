@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 16 - Dilemas Éticos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           ESTILOS ESPECÍFICOS DE LA ACTIVIDAD
+        ========================================= */
+        .actividad-container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Cabecera de la Actividad */
+        .header-section {
+            background: var(--card-color, #161b22);
+            border: 1px solid var(--border-color, #30363d);
+            border-left: 4px solid var(--primary-color, #00ff9c);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-section h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Caja de Metadatos (Equipo, Fecha, etc.) */
+        .box-metadata {
+            background: var(--console-bg, #05080c);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-family: 'Courier New', monospace;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .box-metadata ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .box-metadata li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .box-metadata i {
+            color: var(--primary-color, #00ff9c);
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Títulos de cada sección de la Rúbrica */
+        .rubrica-titulo {
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color, #30363d);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* El tag numérico neón */
+        .rubrica-tag {
+            background: rgba(0, 255, 156, 0.1);
+            color: var(--primary-color, #00ff9c);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            border: 1px solid var(--primary-color, #00ff9c);
+        }
+
+        /* Párrafos de texto */
+        .scroll-element p {
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+
+        .scroll-element strong {
+            color: #fff;
+        }
+
+        .scroll-element h3 {
+            color: var(--primary-color, #00ff9c);
+            margin: 30px 0 15px 0;
+            font-size: 1.15rem;
+        }
+
+        /* Imágenes de la actividad */
+        .espacio-imagen {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .espacio-imagen img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color, #30363d);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Lista de Referencias */
+        .referencias-lista {
+            padding-left: 20px;
+        }
+
+        .referencias-lista li {
+            color: var(--muted-text, #8b949e);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            word-break: break-word;
+        }
+
+        /* Botón de PDF */
+        .btn-exportar {
+            background: #111;
+            border: 1px solid var(--primary-color, #00ff9c);
+            color: var(--primary-color, #00ff9c);
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s;
+            margin: 20px 0 10px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .btn-exportar:hover {
+            background: var(--primary-color, #00ff9c);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+
+    <header class="header">
+        <div class="header-container">
+            <img src="Image/logo-heizelll.jpg" alt="Logo Heizelll" class="header-logo">
+            <div class="header-text">
+                <h1>Hazel Mario Avalos Rangel</h1>
+                <span class="alias">HeizelllNull</span>
+                <p>
+                    <strong>Universidad Politécnica de San Luis Potosí</strong><br>
+                    <strong>CNO V – Seguridad Informática</strong><br>
+                    <strong>Portafolio de Evidencias</strong><br>
+                    <strong>Primavera 2026</strong>
+                </p>
+            </div>
+            <nav class="nav nav-icons">
+                <a href="index.html" title="Inicio">
+                    <img src="Image/icons/Inicio.png" alt="Inicio">
+                </a>
+
+                <a href="Proyectos.html" title="Proyectos">
+                    <img src="Image/icons/Practicas.png" alt="Prácticas">
+                </a>
+
+                <a href="Parciales.html" title="Evidencias">
+                    <img src="Image/icons/Evidencias.png" alt="Evidencias">
+                </a>
+
+                <a href="index.html#contacto" title="Contacto">
+                    <img src="Image/icons/Contacto.png" alt="Contacto">
+                </a>
+                <a href="#" title="Certificaciones">
+                    <img src="Image/icons/certificaciones.png" alt="Certificaciones">
+                </a>
+
+                <div class="dropdown">
+                    <button class="dropbtn">ROAD TO HALL OF FAME <span>▼</span></button>
+                    <div class="dropdown-content">
+                        <a href="sql-injection.html">SQL Injection</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="actividad-container">
+
+        <div class="header-section scroll-element">
+            <h1>DILEMAS ÉTICOS EN CIBERSEGURIDAD</h1>
+            <p style="color: var(--primary-color); font-family: 'Courier New', monospace; margin-top: 0; font-weight: bold;">Actividad 16 | Equipo 02</p>
+            
+            <div class="box-metadata">
+                <h4 style="margin-top:0; margin-bottom: 15px; color:#fff;">>_ DATOS DE LA ACTIVIDAD:</h4>
+                <ul>
+                    <li><i class="fas fa-users"></i> <strong>Equipo 02 Integrantes:</strong><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Hazel Mario Ávalos Rangel<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Jorge Alejandro Cabrera Meza<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Ángel Josué González Delgado<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Diego López Castro<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Jorge Emmanuel López Monsiváis
+                    </li>
+                    <li><i class="fas fa-chalkboard-teacher"></i> <strong>Profesor:</strong> Servando López Contreras</li>
+                    <li><i class="fas fa-calendar-alt"></i> <strong>Fecha de entrega:</strong> 15-Mayo-2026</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">01</span> Introducción</h2>
+            <div class="scroll-element">
+                <p>En un ecosistema digital donde el perímetro de seguridad es cada vez más difuso y las capacidades ofensivas evolucionan a un ritmo sin precedentes, la integridad del especialista en ciberseguridad se convierte en la última línea de defensa de una organización.</p>
+                <p>No basta con el dominio técnico de herramientas de monitoreo o la ejecución impecable de un penetration test; el verdadero desafío radica en la gestión de situaciones donde los límites legales, organizacionales y morales convergen en zonas grises.</p>
+                <p>Este documento analiza de forma crítica diversos escenarios críticos, desde el acceso no autorizado interno hasta el uso de inteligencia de fuentes abiertas (OSINT), con el fin de evaluar la capacidad de toma de decisiones bajo presión, garantizando que el ejercicio técnico no solo sea efectivo, sino también éticamente intachable y alineado con los marcos normativos vigentes.</p>
+                
+                <div class="espacio-imagen">
+                    <img src="Image/etica1.jpg" alt="Ilustración de Ética en Ciberseguridad">
+                </div>
+            </div>
+        </section>
+        
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">02</span> Marco Teórico</h2>
+            <div class="scroll-element">
+                <p>La fundamentación de esta actividad se asienta en la intersección de la ética aplicada y los estándares internacionales de seguridad de la información, como la familia de normas ISO/IEC 27001, que dictan que la protección de activos debe basarse en la gestión de riesgos y el cumplimiento legal.</p>
+                <p>Un pilar axiológico central son los "10 Mandamientos de la Ética Informática", creados en 1992 por el Computer Ethics Institute (CEI) bajo la dirección del Dr. Ramon C. Barquin; este decálogo actúa como un marco de referencia global para prevenir el sabotaje, el espionaje y la falta de integridad en el manejo de datos.</p>
+                <p>Para contextualizar la toma de decisiones, es necesario comprender la tríada CIA (Confidencialidad, Integridad y Disponibilidad), pues cualquier dilema ético suele comprometer uno de estos vectores. El análisis se enriquece mediante tres lentes filosóficos: la ética utilitarista, que busca el máximo beneficio técnico y social; el enfoque de derechos, que salvaguarda la privacidad del usuario final frente al poder del administrador de sistemas; y el bien común, que visualiza la ciberseguridad como un componente esencial de la estabilidad democrática.</p>
+                <p>Finalmente, la clasificación de las conductas ilícitas es crucial para la documentación pericial, diferenciando entre el delito informático, donde el software o hardware es la víctima, el delito asistido por computadora, uso del sistema como medio para el fraude o la extorsión, y el delito incidental, donde la tecnología facilita la evidencia de un crimen tradicional, permitiendo así que el especialista justifique sus acciones no solo mediante la técnica, sino bajo un criterio profesional sólido y jurídicamente defendible.</p>
+            </div>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">03</span> Análisis de los escenarios</h2>
+            
+            <div class="scroll-element">
+                <h3>> Escenario 01: Acceso no autorizado interno</h3>
+                <p>Trabajas en el área de ciberseguridad de una empresa. Durante una revisión de logs detectas que un compañero accedió a correos privados del director general sin autorización. El compañero argumenta que lo hizo para "detectar posibles fugas de información".</p>
+                
+                <p><strong>1. El dilema ético</strong><br>
+                El conflicto radica en la colisión entre el deber de seguridad (detectar fugas) y el derecho a la privacidad (correos del director). El compañero justifica una acción intrusiva y no autorizada bajo una premisa de protección corporativa, planteando si el "fin justifica los medios" en un entorno donde no se siguieron los protocolos de auditoría formal.</p>
+                
+                <p><strong>2. Acción como especialista</strong><br>
+                Desde un punto de vista técnico y de cumplimiento, mi deber es reportar el incidente de inmediato a la dirección de Seguridad de la Información (CISO) y a Recursos Humanos. Procedería a asegurar los logs de acceso para evitar que sean alterados por el compañero y abriría una cadena de custodia sobre la evidencia del acceso no autorizado, ya que una investigación legítima debe estar precedida por una orden formal y, a menudo, la presencia de un representante legal o de cumplimiento.</p>
+
+                <p><strong>3. Justificación desde marcos éticos</strong><br>
+                • <strong>A) Ética Utilitarista:</strong> El acceso no autorizado genera más daño que beneficio. Aunque se "busquen" fugas, la pérdida de confianza en el departamento de ciberseguridad y el riesgo legal para la empresa superan cualquier hallazgo hipotético. La seguridad se basa en procesos, no en vigilantes independientes.<br>
+                • <strong>B) Enfoque de derechos:</strong> Se viola el derecho fundamental a la privacidad de las comunicaciones del Director General. Como especialista, mi deber es proteger estos derechos frente a intrusiones, incluso si provienen de "aliados".<br>
+                • <strong>C) Enfoque del bien común:</strong> La integridad de la organización depende de que todos respeten las reglas establecidas. Si se permite que un técnico acceda a correos privados por criterio propio, se rompe el orden institucional y el clima de seguridad colectiva.</p>
+
+                <p><strong>4. Mandamientos de ética informática</strong><br>
+                Se viola el mandamiento: "No indagarás en los archivos ajenos". Aunque el compañero argumente fines de seguridad, la falta de autorización convierte su acción en una intrusión ilegítima.</p>
+
+                <p><strong>5. Clasificación del delito</strong><br>
+                Delito informático: Se trata de un acceso ilícito a sistemas de tratamiento de información, tipificado como una vulneración a la confidencialidad de los datos.</p>
+            </div>
+
+            <div class="scroll-element">
+                <h3 style="border-top: 1px solid #333; padding-top: 20px; margin-top: 30px;">> Escenario 02: Vulnerabilidad crítica no reportada</h3>
+                <p>Durante un pentest encuentras una vulnerabilidad crítica en un sistema financiero que permite extraer dinero. El cliente aún no ha firmado el contrato final y tú sabes que podrías explotarla sin ser detectado.</p>
+                
+                <p><strong>1. El dilema ético</strong><br>
+                El dilema es el conflicto entre la integridad profesional y legal frente al beneficio económico personal. Existe la tentación de aprovechar un vacío administrativo (falta de firma de contrato) y una debilidad técnica para cometer un robo que, teóricamente, no dejaría rastro.</p>
+                
+                <p><strong>2. Acción como especialista</strong><br>
+                Como profesional ético, mi acción debe ser la transparencia absoluta. Documentaría la vulnerabilidad de inmediato en un reporte preliminar y la comunicaría al cliente con carácter de urgencia bajo un acuerdo de confidencialidad (NDA), incluso si el contrato final no está firmado. Mi valor profesional reside en mi capacidad de encontrar fallos para corregirlos, no para explotarlos. La confianza del cliente es el activo más valioso en un pentest.</p>
+
+                <p><strong>3. Justificación desde marcos éticos</strong><br>
+                • <strong>A) Ética Utilitarista:</strong> El robo de dinero causaría un perjuicio económico directo a los usuarios y a la entidad financiera, además de que, de ser descubierto, mi carrera y la reputación de la industria de la ciberseguridad quedarían destruidas. El beneficio de reportar (seguridad para miles) supera el beneficio individual de robar.<br>
+                • <strong>B) Enfoque de derechos:</strong> La entidad financiera y sus clientes tienen derecho a la propiedad privada y a la seguridad de sus activos. Explotar la falla es una violación directa de estos derechos.<br>
+                • <strong>C) Enfoque del bien común:</strong> Un sistema financiero estable y seguro es un bien público. Al reportar la falla, fortalezco la infraestructura en la que confía la sociedad para sus transacciones diarias.</p>
+
+                <p><strong>4. Mandamientos de ética informática</strong><br>
+                Se violan (en caso de explotarla): "No usarás una computadora para robar" y "No usarás una computadora para dar falso testimonio" (al ocultar el hallazgo en el reporte para beneficio propio).</p>
+
+                <p><strong>5. Clasificación del delito</strong><br>
+                Delito informático: Sería un fraude informático o transferencia no consentida de activos, donde el sistema informático es el medio y el fin para la ejecución del delito.</p>
+
+                <div class="espacio-imagen">
+                    <img src="Image/etica2.png" alt="Análisis de Vulnerabilidad">
+                </div>
+            </div>
+
+            <div class="scroll-element">
+                <h3 style="border-top: 1px solid #333; padding-top: 20px; margin-top: 30px;">> Escenario 03: Uso de herramientas OSINT</h3>
+                <p>Estás investigando a una persona sospechosa de fraude. Encuentras información personal (dirección, familia, hábitos) en fuentes abiertas. Tu superior te pide usar esa información para presionarlo psicológicamente.</p>
+                
+                <p><strong>1. El dilema ético</strong><br>
+                El conflicto se presenta entre la obediencia jerárquica y el uso profesional de la información. Aunque la información se obtuvo de fuentes abiertas de manera legal, el dilema surge al decidir si es ético utilizar datos personales sensibles (familia, hábitos) para realizar acoso o presión psicológica, lo cual se aleja de una investigación forense objetiva.</p>
+                
+                <p><strong>2. Acción como especialista</strong><br>
+                Me negaría rotundamente a realizar la presión psicológica. Técnicamente, entregaría un informe basado únicamente en hechos y evidencia relacionada con el fraude. Argumentaría ante mi superior que el uso de tácticas de presión personal no solo es poco ético, sino que puede invalidar el proceso judicial posterior por coacción o acoso, dañando la legalidad de la investigación.</p>
+
+                <p><strong>3. Justificación desde marcos éticos</strong><br>
+                • <strong>A) Ética Utilitarista:</strong> El uso de tácticas de presión puede traer resultados rápidos, pero genera un riesgo legal inmenso para la empresa y puede destruir la vida de personas inocentes (familiares del sospechoso) que no tienen relación con el fraude.<br>
+                • <strong>B) Enfoque de derechos:</strong> El sospechoso, a pesar de su situación, conserva el derecho a la dignidad y a que su familia no sea instrumentalizada como herramienta de extorsión.<br>
+                • <strong>C) Enfoque del bien común:</strong> La justicia debe impartirse a través del debido proceso. Permitir que los investigadores actúen como "extorsionadores" degrada la confianza social en las instituciones y en las herramientas tecnológicas.</p>
+
+                <p><strong>4. Mandamientos de ética informática</strong><br>
+                Se respeta la obtención de información (si es pública), pero se violaría el mandamiento: "No usarás una computadora para dañar a otros" si se utiliza dicha información para el acoso.</p>
+
+                <p><strong>5. Clasificación del delito</strong><br>
+                Delito asistido por computadora: El uso de información obtenida mediante herramientas digitales para realizar una extorsión o acoso psicológico convierte a la tecnología en el facilitador de un delito de carácter personal y conductual.</p>
+            </div>
+        </section>
+
+        <section class="actividad-seccion">
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">04</span> Conclusión</h2>
+            <div class="scroll-element">
+                <p>La resolución de esta actividad permite concluir que en el ámbito de la ciberseguridad, el conocimiento técnico es una herramienta de doble filo que exige una brújula moral robusta para evitar su abuso. A través del análisis de los escenarios de acceso no autorizado, vulnerabilidades no reportadas y el uso de técnicas OSINT, se hace evidente que el profesional de seguridad no solo debe ser un experto en la detección de amenazas, sino también un custodio de la ética organizacional.</p>
+                <p>El aprendizaje fundamental radica en que ninguna acción técnica ocurre en un vacío; cada decisión debe ser filtrada por los 10 Mandamientos de la Ética Informática y evaluada bajo enfoques como el utilitarismo y el bien común para garantizar que la búsqueda de la seguridad no vulnere los derechos fundamentales de las personas. En última instancia, la integridad de un sistema es tan fuerte como la integridad ética de quienes lo administran, reafirmando que la excelencia en ciberseguridad se alcanza cuando el rigor técnico y la responsabilidad moral convergen para proteger el ecosistema digital de manera justa y legal.</p>
+            </div>
+        </section>
+
+        <section class="actividad-seccion">   
+            <h2 class="rubrica-titulo scroll-element"><span class="rubrica-tag">05</span> Referencias Técnicas</h2>
+            <div class="scroll-element">
+                <ul class="referencias-lista">
+                    <li>Barquin, R. C. (1992). In pursuit of a "Ten Commandments" for Computer Ethics. Computer Ethics Institute. https://computerethicsinstitute.org/barquin-ten-commandments/</li>
+                    <li>International Organization for Standardization. (2022). Information security, cybersecurity and privacy protection — Information security management systems — Requirements (ISO/IEC Standard No. 27001). https://www.iso.org/standard/27001</li>
+                    <li>Joyanes Aguilar, L. (2014). Ciberseguridad: Estrategias de prevención, retos y ética digital. Alfaomega. https://www.alfaomega.com.mx/default/ciberseguridad-estrategias-de-prevencion-retos-y-etica-digital.html</li>
+                    <li>Nacional Institute of Standards and Technology. (2024). The NIST Cybersecurity Framework (CSF) 2.0. U.S. Department of Commerce. https://www.nist.gov/cyberframework</li>
+                    <li>Sánchez, G., & Martínez, J. (2021). Ética para ingenieros en la era de la información. Revista Iberoamericana de Ciberseguridad. https://www.researchgate.net/publication/350564251_Etica_y_Ciberseguridad</li>
+                </ul>
+            </div>
+        </section> 
+
+        <section class="actividad-seccion descarga">
+            <h2>Documento en PDF</h2>
+            <a href="pdf/act16-Equipo02.pdf" class="btn-pdf" download>
+                📄 Exportar a PDF
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 HeizellNull – Portafolio Seguridad Informática</p>
+    </footer>
+</body>
+</html>
