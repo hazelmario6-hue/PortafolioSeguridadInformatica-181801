@@ -6,12 +6,230 @@
     <title>Proyecto 3 - Seguridad Informática</title>
     <meta name="description" content="Portafolio digital de Seguridad Informática">
     <meta name="author" content="Hazel Mario Avalos Rangel">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* =====================
-           ESTILOS DE DOCUMENTACIÓN SGSI (AISLADOS PARA EVITAR CHOQUES)
-        ===================== */
-        
-        /* Variables locales para asegurar que no falte ningún color */
+                /* =========================================
+           ESTILOS ESPECÍFICOS DE LA ACTIVIDAD
+        ========================================= */
+        .actividad-container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Cabecera de la Actividad */
+        .header-section {
+            background: var(--card-color, #161b22);
+            border: 1px solid var(--border-color, #30363d);
+            border-left: 4px solid var(--primary-color, #00ff9c);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-section h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Caja de Metadatos */
+        .box-metadata {
+            background: var(--console-bg, #05080c);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-family: 'Courier New', monospace;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .box-metadata ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .box-metadata li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .box-metadata i {
+            color: var(--primary-color, #00ff9c);
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Títulos de sección */
+        .rubrica-titulo {
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color, #30363d);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rubrica-tag {
+            background: rgba(0, 255, 156, 0.1);
+            color: var(--primary-color, #00ff9c);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            border: 1px solid var(--primary-color, #00ff9c);
+        }
+
+        /* Textos y Párrafos */
+        .scroll-element p {
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+
+        .scroll-element strong {
+            color: #fff;
+        }
+
+        .scroll-element h3 {
+            color: var(--primary-color, #00ff9c);
+            margin: 30px 0 15px 0;
+            font-size: 1.15rem;
+        }
+
+        /* Cajas para las métricas CVSS */
+        .cvss-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--border-color, #30363d);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.3s;
+        }
+
+        .cvss-item:hover {
+            background: rgba(0, 255, 156, 0.05);
+            border-left-color: var(--primary-color, #00ff9c);
+        }
+
+        .cvss-item h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cvss-item p {
+            margin-bottom: 0 !important;
+            font-size: 0.9rem !important;
+            color: #bbb !important;
+        }
+
+        /* Etiqueta final del Vector */
+        .vector-cvss {
+            background: #05080c;
+            border: 1px solid var(--primary-color, #00ff9c);
+            color: var(--primary-color, #00ff9c);
+            padding: 15px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            margin: 25px 0;
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.2);
+            letter-spacing: 1px;
+        }
+
+        /* Imágenes y Videos */
+        .espacio-imagen {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .espacio-imagen img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color, #30363d);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid var(--border-color, #30363d);
+            margin: 20px 0;
+        }
+
+        .video-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pie-imagen {
+            text-align: center;
+            font-style: italic;
+            color: #888 !important;
+            font-size: 0.85rem !important;
+            margin-top: -10px !important;
+        }
+
+        /* Referencias */
+        .sangria-francesa {
+            padding-left: 30px;
+            text-indent: -30px;
+            margin-bottom: 15px !important;
+            color: #8b949e !important;
+            word-break: break-word;
+        }
+
+        .sangria-francesa a {
+            color: var(--primary-color, #00ff9c);
+            text-decoration: none;
+        }
+
+        .sangria-francesa a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botón PDF */
+        .btn-exportar {
+            background: #111;
+            border: 1px solid var(--primary-color, #00ff9c);
+            color: var(--primary-color, #00ff9c);
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s;
+            margin: 20px 0 10px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        .btn-exportar:hover {
+            background: var(--primary-color, #00ff9c);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 156, 0.4);
+            transform: translateY(-2px);
+        }
         .sgsi-documentation-section {
             --primary-color: #00ff9c;
             --border-color: #30363d;
@@ -315,10 +533,25 @@
             </nav>
         </div>
     </header>
-    <section class="blog">
-        <h2>PR03. Bajo la lupa: evaluación de ciberseguridad en un corporativo.</h2>
-        
-    </section>
+    <div class="header-section scroll-element">
+            <h1>Bajo la lupa: evaluación de ciberseguridad en un corporativo</h1>
+            <p style="color: var(--primary-color); font-family: 'Courier New', monospace; margin-top: 0; font-weight: bold;">Proyect0 3| Equipo 02</p>
+            
+            <div class="box-metadata">
+                <h4 style="margin-top:0; margin-bottom: 15px; color:#fff;">>_ DATOS DE LA ACTIVIDAD:</h4>
+                <ul>
+                    <li><i class="fas fa-users"></i> <strong>Equipo 02 Integrantes:</strong><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Hazel Mario Ávalos Rangel<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Jorge Alejandro Cabrera Meza<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Ángel Josué González Delgado<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Diego López Castro<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;- Jorge Emmanuel López Monsiváis
+                    </li>
+                    <li><i class="fas fa-chalkboard-teacher"></i> <strong>Profesor:</strong> Servando López Contreras</li>
+                    <li><i class="fas fa-calendar-alt"></i> <strong>Fecha de entrega:</strong> 19-Mayo-2026</li>
+                </ul>
+            </div>
+        </div>
     <section class="sgsi-documentation-section" style="margin-top: 60px;">
             <div class="case-header">
                 <h2>IMPLEMENTACIÓN SGSI: <span>ISO/IEC 27001 - Robert Bosch EDI/4</span></h2>
